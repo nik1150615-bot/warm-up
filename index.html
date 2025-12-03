@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>METTA Stretch • Разминка для спины</title>
+  <title>METTA Hub • Focus & Stretch</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     * {
@@ -43,12 +43,36 @@
       flex-direction: column;
     }
 
+    .hidden {
+      display: none;
+    }
+
     .header {
       display: flex;
       justify-content: space-between;
       gap: 12px;
       margin-bottom: 10px;
       align-items: center;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .back-btn {
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      margin-right: 4px;
     }
 
     .badge {
@@ -118,6 +142,130 @@
       color: #9ca3af;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+    }
+
+    /* HUB */
+
+    .hub-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #0f172a;
+    }
+
+    .hub-subtitle {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 14px;
+      max-width: 320px;
+    }
+
+    .hub-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+      flex: 1;
+    }
+
+    .hub-card {
+      border-radius: 18px;
+      padding: 12px 12px;
+      background: radial-gradient(circle at top left, #dbeafe 0, #eff6ff 40%, #f3f4f6 100%);
+      border: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.18);
+    }
+
+    .hub-card-secondary {
+      background: radial-gradient(circle at top left, #dcfce7 0, #ecfdf5 40%, #f3f4f6 100%);
+    }
+
+    .hub-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: #f9fafb;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.4);
+      flex-shrink: 0;
+    }
+
+    .hub-text-main {
+      font-size: 15px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .hub-text-sub {
+      font-size: 12px;
+      color: #4b5563;
+      margin-top: 2px;
+    }
+
+    .hub-tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.06);
+      color: #111827;
+      margin-top: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .hub-footer {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 10px;
+      text-align: left;
+    }
+
+    /* ВКЛАДКИ (Тренировка / Достижения) */
+
+    .top-tabs {
+      display: inline-flex;
+      align-items: center;
+      background: #f3f4f6;
+      border-radius: 999px;
+      padding: 3px;
+      gap: 4px;
+      margin-bottom: 8px;
+      margin-top: 2px;
+    }
+
+    .top-tab-btn {
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      font-size: 11px;
+      padding: 5px 10px;
+      cursor: pointer;
+      color: #6b7280;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 500;
+    }
+
+    .top-tab-btn span:first-child {
+      font-size: 14px;
+    }
+
+    .top-tab-btn.active {
+      background: #ffffff;
+      color: #0f172a;
+      box-shadow:
+        0 0 0 1px rgba(148, 163, 184, 0.7),
+        0 4px 10px rgba(15, 23, 42, 0.08);
     }
 
     .mode-switch {
@@ -193,8 +341,6 @@
       font-size: 14px;
     }
 
-    /* Блок аватара + таймер */
-
     .center {
       flex: 1;
       display: flex;
@@ -241,6 +387,7 @@
       position: relative;
       top: 20px;
       box-shadow: 0 6px 14px rgba(15, 23, 42, 0.4);
+      transform-origin: center bottom;
     }
 
     .avatar-neck {
@@ -267,6 +414,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      transform-origin: 50% 100%;
     }
 
     .avatar-face {
@@ -337,12 +485,59 @@
       opacity: 0.7;
     }
 
+    .avatar-shadow {
+      position: absolute;
+      width: 90px;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.08);
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      filter: blur(4px);
+    }
+
+    /* РАКУРСЫ */
+
+    .avatar--view-front .avatar-body {
+      transform: rotate(0deg);
+    }
+
+    .avatar--view-side .avatar-body {
+      transform: rotate(6deg);
+    }
+
+    .avatar--view-side .back-line {
+      transform: translateX(32px);
+      opacity: 0.9;
+    }
+
+    .avatar--view-side .arm-left {
+      opacity: 0.0;
+    }
+
+    .avatar--view-side .arm-right {
+      transform: rotate(10deg);
+    }
+
+    .avatar--view-front .arm-left,
+    .avatar--view-front .arm-right {
+      opacity: 1;
+      transform: rotate(0deg);
+    }
+
     /* АНИМАЦИИ */
 
     @keyframes nod {
-      0%, 100% { transform: translate(-50%, 0) rotate(0deg); }
-      30% { transform: translate(-50%, 0) rotate(10deg); }
-      60% { transform: translate(-50%, 0) rotate(-8deg); }
+      0%, 100% { transform: translateX(-50%) rotate(0deg); }
+      30% { transform: translateX(-50%) rotate(10deg); }
+      60% { transform: translateX(-50%) rotate(-8deg); }
+    }
+
+    @keyframes nod-side {
+      0%, 100% { transform: translateX(-50%) rotate(6deg); }
+      30% { transform: translateX(-50%) rotate(14deg); }
+      60% { transform: translateX(-50%) rotate(-2deg); }
     }
 
     @keyframes shoulder-roll-left {
@@ -367,21 +562,20 @@
       50% { transform: scaleY(1.06); }
     }
 
-    /* Привязка анимаций к типу упражнения */
-
     .avatar--neck .avatar-head {
       animation: nod 2s ease-in-out infinite;
-      transform-origin: 50% 100%;
+    }
+
+    .avatar--neck.avatar--view-side .avatar-head {
+      animation: nod-side 2.4s ease-in-out infinite;
     }
 
     .avatar--shoulders .arm-left {
       animation: shoulder-roll-left 1.8s ease-in-out infinite;
-      transform-origin: top center;
     }
 
     .avatar--shoulders .arm-right {
       animation: shoulder-roll-right 1.8s ease-in-out infinite;
-      transform-origin: top center;
     }
 
     .avatar--back .avatar-body {
@@ -399,18 +593,6 @@
 
     .avatar--breath .avatar-head {
       animation: nod 3s ease-in-out infinite;
-    }
-
-    .avatar-shadow {
-      position: absolute;
-      width: 90px;
-      height: 18px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.08);
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      filter: blur(4px);
     }
 
     .timer-block {
@@ -455,8 +637,6 @@
       border-radius: 999px;
       transition: width 0.25s ease-out;
     }
-
-    /* Кнопки */
 
     .controls {
       margin-top: 14px;
@@ -578,7 +758,7 @@
       flex-shrink: 0;
     }
 
-    /* Модалка завершения комплекса */
+    /* МОДАЛКИ */
 
     .modal-backdrop {
       position: fixed;
@@ -636,6 +816,90 @@
         0 0 0 1px rgba(22, 163, 74, 0.7);
     }
 
+    /* ДОСТИЖЕНИЯ */
+
+    .ach-view {
+      margin-top: 8px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ach-summary {
+      border-radius: 16px;
+      padding: 10px 10px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      margin-bottom: 10px;
+    }
+
+    .ach-summary-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+
+    .ach-summary-number {
+      font-size: 24px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .ach-summary-label {
+      font-size: 12px;
+      color: #4b5563;
+    }
+
+    .ach-summary-sub {
+      font-size: 11px;
+      color: #6b7280;
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .ach-badges-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      font-size: 11px;
+    }
+
+    .ach-badge {
+      border-radius: 14px;
+      border: 1px dashed #e5e7eb;
+      padding: 8px 8px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .ach-badge-title {
+      font-weight: 600;
+      color: #111827;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .ach-badge-desc {
+      color: #6b7280;
+    }
+
+    .ach-badge.achieved {
+      border-style: solid;
+      border-color: #22c55e;
+      background: #ecfdf5;
+      box-shadow: 0 0 0 1px rgba(22, 163, 74, 0.6);
+    }
+
+    .ach-badge-icon {
+      font-size: 14px;
+    }
+
     @media (max-width: 420px) {
       .card {
         border-radius: 18px;
@@ -662,16 +926,17 @@
 </head>
 <body>
   <div class="shell">
-    <div class="card">
+    <!-- ХАБ -->
+    <div id="screenHub" class="card">
       <div class="header">
         <div>
           <div class="badge">
             <span class="badge-dot"></span>
-            METTA • Stretch
+            METTA • Hub
           </div>
-          <h1>Разминка для спины</h1>
-          <div class="subtitle">
-            Короткий комплекс для шеи, спины и глаз прямо за рабочим столом.
+          <div class="hub-title">Выбери режим</div>
+          <div class="hub-subtitle">
+            Таймер фокуса и разминка для спины — два маленьких инструмента, чтобы сидеть и работать комфортнее.
           </div>
         </div>
         <div class="logo">
@@ -681,93 +946,207 @@
         </div>
       </div>
 
-      <div class="mode-switch">
-        <button class="mode-btn active" data-program="light">
-          <span>🌱</span><span>Короткая</span>
-        </button>
-        <button class="mode-btn" data-program="standard">
-          <span>🌿</span><span>Стандарт</span>
-        </button>
-        <button class="mode-btn" data-program="deep">
-          <span>🌳</span><span>Глубокая</span>
-        </button>
-      </div>
-
-      <div class="status-row">
-        <div class="status-left">
-          <span class="status-dot"></span>
-          <span id="statusText">Комплекс не запущен</span>
-        </div>
-        <div class="status-right">
-          <span>🧍‍♂️</span><span id="exerciseCounter">Упражнение 1 из 3</span>
-        </div>
-      </div>
-
-      <div class="center">
-        <div class="avatar-shell">
-          <div id="avatar" class="avatar-inner avatar--neck">
-            <div class="avatar-base">
-              <div class="back-line"></div>
-
-              <div class="avatar-body">
-                <div class="avatar-neck"></div>
-                <div class="avatar-head">
-                  <div class="avatar-face">
-                    <div class="eye eye-left"></div>
-                    <div class="eye eye-right"></div>
-                    <div class="mouth"></div>
-                  </div>
-                </div>
-                <div class="arm arm-left"></div>
-                <div class="arm arm-right"></div>
-              </div>
+      <div class="hub-grid">
+        <div id="hubPomodoro" class="hub-card">
+          <div class="hub-icon">⏱</div>
+          <div>
+            <div class="hub-text-main">Pomodoro для спины</div>
+            <div class="hub-text-sub">Работа по таймеру, фокус/перерыв, ачивки и серия дней.</div>
+            <div class="hub-tag">
+              <span>▶</span><span>Открыть Pomodoro</span>
             </div>
           </div>
-          <div class="avatar-shadow"></div>
         </div>
 
-        <div class="timer-block">
-          <div id="timer" class="timer">00:30</div>
-          <div id="exerciseTitle" class="exercise-title">Мягкий наклон головы</div>
-          <div id="exerciseSub" class="exercise-sub">Сидя прямо, медленно наклоняй голову к плечу.</div>
-
-          <div class="progress-shell">
-            <div id="progressFill" class="progress-fill"></div>
+        <div id="hubStretch" class="hub-card hub-card-secondary">
+          <div class="hub-icon">🧍‍♂️</div>
+          <div>
+            <div class="hub-text-main">Разминка для спины</div>
+            <div class="hub-text-sub">Короткий комплекс упражнений для шеи, спины и глаз за столом.</div>
+            <div class="hub-tag">
+              <span>✨</span><span>Открыть разминку</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="controls">
-        <button id="startPauseBtn" class="btn-main">
-          <span>▶</span><span>Старт</span>
-        </button>
-        <button id="skipBtn" class="btn-ghost">
-          <span>⏭</span><span>Дальше</span>
-        </button>
-        <button id="resetBtn" class="btn-ghost">
-          <span>↺</span><span>Сброс</span>
-        </button>
-      </div>
+        <div style="flex:1"></div>
 
-      <div class="stats-row">
-        <div class="stats-left">
-          <span>📅</span>
-          <span id="statsToday">Сегодня: 0 комплексов · глаза: 0</span>
+        <div class="hub-footer">
+          Совместимо с креслами METTA: настрой высоту, опору поясницы и подголовник — и приложения станут частью твоего рабочего ритуала.
         </div>
-        <div class="stats-right">
-          <div class="streak-badge">
-            <span class="streak-fire">🔥</span>
-            <span id="streakText">0 дн.</span>
+      </div>
+    </div>
+
+    <!-- ЭКРАН РАЗМИНКИ -->
+    <div id="screenStretch" class="card hidden">
+      <div class="header">
+        <div class="header-left">
+          <button id="backToHubBtn" class="back-btn">←</button>
+          <div>
+            <div class="badge">
+              <span class="badge-dot"></span>
+              METTA • Stretch
+            </div>
+            <h1>Разминка для спины</h1>
+            <div class="subtitle">
+              Короткий комплекс для шеи, спины и глаз прямо за рабочим столом.
+            </div>
           </div>
         </div>
+        <div class="logo">
+          <div class="logo-mark">M</div>
+          <div class="logo-text-main">METTA</div>
+          <div class="logo-sub">ERGONOMIC CHAIRS</div>
+        </div>
       </div>
 
-      <div class="tip-block">
-        <div class="tip-icon">💡</div>
-        <div class="tip-text" id="tipText">
-          <strong>Совет:</strong> делай движения плавно, без боли и рывков.
+      <div class="top-tabs">
+        <button id="tabWorkout" class="top-tab-btn active">
+          <span>🧍‍♂️</span><span>Тренировка</span>
+        </button>
+        <button id="tabAchievements" class="top-tab-btn">
+          <span>🏅</span><span>Достижения</span>
+        </button>
+      </div>
+
+      <!-- Вкладка: Тренировка -->
+      <div id="viewWorkout">
+        <div class="mode-switch">
+          <button class="mode-btn active" data-program="light">
+            <span>🌱</span><span>Короткая</span>
+          </button>
+          <button class="mode-btn" data-program="standard">
+            <span>🌿</span><span>Стандарт</span>
+          </button>
+          <button class="mode-btn" data-program="deep">
+            <span>🌳</span><span>Глубокая</span>
+          </button>
         </div>
-        <button id="tipNextBtn" class="tip-next">›</button>
+
+        <div class="status-row">
+          <div class="status-left">
+            <span class="status-dot"></span>
+            <span id="statusText">Комплекс не запущен</span>
+          </div>
+          <div class="status-right">
+            <span>🧍‍♂️</span><span id="exerciseCounter">Упражнение 1 из 3</span>
+          </div>
+        </div>
+
+        <div class="center">
+          <div class="avatar-shell">
+            <div id="avatar" class="avatar-inner avatar--neck avatar--view-front">
+              <div class="avatar-base">
+                <div class="back-line"></div>
+
+                <div class="avatar-body">
+                  <div class="avatar-neck"></div>
+                  <div class="avatar-head">
+                    <div class="avatar-face">
+                      <div class="eye eye-left"></div>
+                      <div class="eye eye-right"></div>
+                      <div class="mouth"></div>
+                    </div>
+                  </div>
+                  <div class="arm arm-left"></div>
+                  <div class="arm arm-right"></div>
+                </div>
+              </div>
+            </div>
+            <div class="avatar-shadow"></div>
+          </div>
+
+          <div class="timer-block">
+            <div id="timer" class="timer">00:30</div>
+            <div id="exerciseTitle" class="exercise-title">Мягкий наклон головы</div>
+            <div id="exerciseSub" class="exercise-sub">Сидя прямо, медленно наклоняй голову к плечу.</div>
+
+            <div class="progress-shell">
+              <div id="progressFill" class="progress-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button id="startPauseBtn" class="btn-main">
+            <span>▶</span><span>Старт</span>
+          </button>
+          <button id="skipBtn" class="btn-ghost">
+            <span>⏭</span><span>Дальше</span>
+          </button>
+          <button id="resetBtn" class="btn-ghost">
+            <span>↺</span><span>Сброс</span>
+          </button>
+        </div>
+
+        <div class="stats-row">
+          <div class="stats-left">
+            <span>📅</span>
+            <span id="statsToday">Сегодня: 0 комплексов · глаза: 0</span>
+          </div>
+          <div class="stats-right">
+            <div class="streak-badge">
+              <span class="streak-fire">🔥</span>
+              <span id="streakText">0 дн.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tip-block">
+          <div class="tip-icon">💡</div>
+          <div class="tip-text" id="tipText">
+            <strong>Совет:</strong> делай движения плавно, без боли и рывков.
+          </div>
+          <button id="tipNextBtn" class="tip-next">›</button>
+        </div>
+      </div>
+
+      <!-- Вкладка: Достижения -->
+      <div id="viewAchievements" class="hidden ach-view">
+        <div class="ach-summary">
+          <div class="ach-summary-main">
+            <div>
+              <div class="ach-summary-number" id="achTotalComplexes">0</div>
+              <div class="ach-summary-label">комплексов всего</div>
+            </div>
+            <div class="ach-summary-label" id="achTodayLine">Сегодня: 0</div>
+          </div>
+          <div class="ach-summary-sub">
+            <div>Лучший стрик: <span id="achBestStreak">0 дн.</span></div>
+            <div>Глаза сегодня: <span id="achEyesToday">0 упражнений</span></div>
+          </div>
+        </div>
+
+        <div class="ach-badges-grid">
+          <div class="ach-badge" id="achFirstComplex">
+            <div class="ach-badge-title">
+              <span class="ach-badge-icon">✨</span>
+              <span>Первый шаг</span>
+            </div>
+            <div class="ach-badge-desc">Сделай хотя бы 1 комплекс разминки.</div>
+          </div>
+          <div class="ach-badge" id="achThreeToday">
+            <div class="ach-badge-title">
+              <span class="ach-badge-icon">💪</span>
+              <span>Стабильный день</span>
+            </div>
+            <div class="ach-badge-desc">3 и более комплексa за один день.</div>
+          </div>
+          <div class="ach-badge" id="achEyesHero">
+            <div class="ach-badge-title">
+              <span class="ach-badge-icon">👀</span>
+              <span>Герой глаз</span>
+            </div>
+            <div class="ach-badge-desc">5 и более упражнений для глаз за день.</div>
+          </div>
+          <div class="ach-badge" id="achStreakSeven">
+            <div class="ach-badge-title">
+              <span class="ach-badge-icon">🔥</span>
+              <span>Неделя с METTA</span>
+            </div>
+            <div class="ach-badge-desc">Разминка 7 дней подряд или больше.</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -785,8 +1164,24 @@
     </div>
   </div>
 
+  <!-- Модалка описания упражнения (первое и последующие) -->
+  <div id="exerciseModal" class="modal-backdrop hidden">
+    <div class="modal">
+      <div class="modal-title" id="exerciseModalTitle">Упражнение</div>
+      <div class="modal-text" id="exerciseModalText">
+        Описание упражнения.
+      </div>
+      <div class="modal-footer">
+        <button id="exerciseModalBtn" class="modal-btn">Начать</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // ---- ДАННЫЕ УПРАЖНЕНИЙ ----
+    const POMODORO_URL = "https://nik1150615-bot.github.io/metta-pomodoro-game1/";
+
+    // ---- ПРОГРАММЫ УПРАЖНЕНИЙ ----
+    // view: front / side (разный ракурс)
 
     const PROGRAMS = {
       light: [
@@ -794,6 +1189,7 @@
           name: "Мягкий наклон головы",
           area: "Шея",
           type: "neck",
+          view: "front",
           duration: 30,
           description: "Сидя прямо, медленно наклоняй голову к плечу, без рывков.",
         },
@@ -801,6 +1197,7 @@
           name: "Сведение лопаток",
           area: "Верхняя спина",
           type: "back",
+          view: "side",
           duration: 30,
           description: "Слегка своди лопатки к центру, грудь смотрит вперёд.",
         },
@@ -808,6 +1205,7 @@
           name: "Перевод взгляда вдаль",
           area: "Глаза",
           type: "eyes",
+          view: "front",
           duration: 30,
           description: "5 секунд смотри на экран, 5 — в самую дальнюю точку в комнате.",
         },
@@ -817,6 +1215,7 @@
           name: "Круговые движения плечами",
           area: "Плечи",
           type: "shoulders",
+          view: "front",
           duration: 30,
           description: "Опускай плечи вниз на каждый круг, не зажимай шею.",
         },
@@ -824,6 +1223,7 @@
           name: "Наклоны головы в стороны",
           area: "Шея",
           type: "neck",
+          view: "front",
           duration: 30,
           description: "Тянись ухом к плечу, плечи оставь расслабленными.",
         },
@@ -831,6 +1231,7 @@
           name: "Скрутка сидя",
           area: "Поясница",
           type: "back",
+          view: "side",
           duration: 40,
           description: "Сидя прямо, мягко поворачивай корпус вправо и влево.",
         },
@@ -838,6 +1239,7 @@
           name: "Растяжка грудных мышц",
           area: "Грудной отдел",
           type: "back",
+          view: "side",
           duration: 30,
           description: "Сведи лопатки, слегка отведя руки назад.",
         },
@@ -845,6 +1247,7 @@
           name: "Перевод взгляда: близко–далеко",
           area: "Глаза",
           type: "eyes",
+          view: "front",
           duration: 30,
           description: "5 секунд на близком объекте, 5 секунд — вдаль.",
         },
@@ -854,6 +1257,7 @@
           name: "Круговые движения плечами",
           area: "Плечи",
           type: "shoulders",
+          view: "front",
           duration: 30,
           description: "Двигай плечами вперёд и назад в комфортной амплитуде.",
         },
@@ -861,6 +1265,7 @@
           name: "Наклоны головы во все стороны",
           area: "Шея",
           type: "neck",
+          view: "front",
           duration: 40,
           description: "Наклоняй голову вперёд, назад и к плечам, без боли.",
         },
@@ -868,6 +1273,7 @@
           name: "Скрутка сидя",
           area: "Поясница",
           type: "back",
+          view: "side",
           duration: 40,
           description: "Мягко скручивай корпус, оставаясь на седалищных костях.",
         },
@@ -875,6 +1281,7 @@
           name: "Наклон вперёд с опорой",
           area: "Поясница",
           type: "back",
+          view: "side",
           duration: 40,
           description: "Опирайся руками на бёдра, оставляя спину максимально прямой.",
         },
@@ -882,6 +1289,7 @@
           name: "Растяжка грудных мышц",
           area: "Грудной отдел",
           type: "back",
+          view: "side",
           duration: 30,
           description: "Открой грудную клетку, будто чуть раздвигаешь плечи назад.",
         },
@@ -889,6 +1297,7 @@
           name: "Перевод взгляда по сторонам",
           area: "Глаза",
           type: "eyes",
+          view: "front",
           duration: 30,
           description: "Смотри по очереди вверх, вниз, вправо и влево.",
         },
@@ -896,6 +1305,7 @@
           name: "Глубокое дыхание",
           area: "Дыхание",
           type: "breath",
+          view: "front",
           duration: 40,
           description: "Медленный вдох через нос, выдох через рот подольше, чем вдох.",
         },
@@ -905,7 +1315,7 @@
     const TIPS = [
       "Делай движения плавно и в своей комфортной амплитуде.",
       "Лучше 2–3 минуты разминки несколько раз в день, чем один большой подход раз в неделю.",
-      "Если чувствуешь боль — уменьши амплитуду или сделай паузу.",
+      "Если чувствуешь боль — уменьшай амплитуду или сделай паузу.",
       "Дыши спокойно и не задерживай дыхание во время растяжки.",
       "Старайся, чтобы стопы стояли на полу, а спина опиралась на спинку кресла.",
       "Привяжи разминку к созвонам: закончил митинг — сделал 1 комплекс.",
@@ -923,13 +1333,26 @@
 
     let isRunning = false;
     let timerId = null;
+    let hasStartedComplex = false;
 
     let complexesToday = 0;
     let eyesToday = 0;
     let streakDays = 0;
+    let totalComplexes = 0;
+    let bestStreak = 0;
     let tipIndex = 0;
 
+    // Модалка упражнений
+    let exerciseModalMode = null; // "start" | "switch"
+    let exerciseModalNextIndex = 0;
+
     // ---- DOM ----
+
+    const screenHub = document.getElementById("screenHub");
+    const screenStretch = document.getElementById("screenStretch");
+    const hubPomodoro = document.getElementById("hubPomodoro");
+    const hubStretch = document.getElementById("hubStretch");
+    const backToHubBtn = document.getElementById("backToHubBtn");
 
     const modeButtons = document.querySelectorAll(".mode-btn");
     const statusTextEl = document.getElementById("statusText");
@@ -954,6 +1377,27 @@
     const doneModalBtn = document.getElementById("doneModalBtn");
     const doneModalTextEl = document.getElementById("doneModalText");
 
+    const exerciseModal = document.getElementById("exerciseModal");
+    const exerciseModalTitle = document.getElementById("exerciseModalTitle");
+    const exerciseModalText = document.getElementById("exerciseModalText");
+    const exerciseModalBtn = document.getElementById("exerciseModalBtn");
+
+    const tabWorkout = document.getElementById("tabWorkout");
+    const tabAchievements = document.getElementById("tabAchievements");
+    const viewWorkout = document.getElementById("viewWorkout");
+    const viewAchievements = document.getElementById("viewAchievements");
+
+    // Achievements DOM
+    const achTotalComplexesEl = document.getElementById("achTotalComplexes");
+    const achTodayLineEl = document.getElementById("achTodayLine");
+    const achBestStreakEl = document.getElementById("achBestStreak");
+    const achEyesTodayEl = document.getElementById("achEyesToday");
+
+    const achFirstComplexEl = document.getElementById("achFirstComplex");
+    const achThreeTodayEl = document.getElementById("achThreeToday");
+    const achEyesHeroEl = document.getElementById("achEyesHero");
+    const achStreakSevenEl = document.getElementById("achStreakSeven");
+
     // ---- ХРАНЕНИЕ ----
 
     const STORAGE_KEYS = {
@@ -963,6 +1407,8 @@
       EYES_VAL: "metta_stretch_eyes_value",
       STREAK_DATE: "metta_stretch_streak_date",
       STREAK_VAL: "metta_stretch_streak_value",
+      TOTAL_COMPLEX_VAL: "metta_stretch_total_complex",
+      BEST_STREAK_VAL: "metta_stretch_best_streak",
     };
 
     function getDateKey(d = new Date()) {
@@ -970,6 +1416,15 @@
       const m = String(d.getMonth() + 1).padStart(2, "0");
       const day = String(d.getDate()).padStart(2, "0");
       return `${y}-${m}-${day}`;
+    }
+
+    function pluralRu(n, forms) {
+      const nAbs = Math.abs(n) % 100;
+      const n1 = nAbs % 10;
+      if (nAbs > 10 && nAbs < 20) return forms[2];
+      if (n1 > 1 && n1 < 5) return forms[1];
+      if (n1 === 1) return forms[0];
+      return forms[2];
     }
 
     function loadTodayCounters() {
@@ -1012,6 +1467,26 @@
       }
 
       try {
+        const totalVal = parseInt(
+          localStorage.getItem(STORAGE_KEYS.TOTAL_COMPLEX_VAL) || "0",
+          10
+        );
+        totalComplexes = isFinite(totalVal) && totalVal >= 0 ? totalVal : 0;
+      } catch (e) {
+        totalComplexes = 0;
+      }
+
+      try {
+        const bestVal = parseInt(
+          localStorage.getItem(STORAGE_KEYS.BEST_STREAK_VAL) || "0",
+          10
+        );
+        bestStreak = isFinite(bestVal) && bestVal >= 0 ? bestVal : 0;
+      } catch (e) {
+        bestStreak = 0;
+      }
+
+      try {
         const streakDate = localStorage.getItem(STORAGE_KEYS.STREAK_DATE);
         const streakVal = parseInt(
           localStorage.getItem(STORAGE_KEYS.STREAK_VAL) || "0",
@@ -1034,16 +1509,13 @@
           );
 
           if (diffDays === 0) {
-            // тот же день
             streakDays = streakVal;
             if (complexesToday > 0 && streakDays === 0) {
               streakDays = 1;
             }
           } else if (diffDays === 1) {
-            // вчера был последний день
             streakDays = complexesToday > 0 ? streakVal + 1 : streakVal;
           } else {
-            // пропуск
             streakDays = complexesToday > 0 ? 1 : 0;
           }
 
@@ -1051,7 +1523,12 @@
           localStorage.setItem(STORAGE_KEYS.STREAK_VAL, String(streakDays));
         }
       } catch (e) {
-        streakDays = 0;
+        streakDays = complexesToday > 0 ? 1 : 0;
+      }
+
+      if (streakDays > bestStreak) {
+        bestStreak = streakDays;
+        saveBestStreak();
       }
     }
 
@@ -1068,6 +1545,24 @@
       try {
         localStorage.setItem(STORAGE_KEYS.EYES_DATE, today);
         localStorage.setItem(STORAGE_KEYS.EYES_VAL, String(eyesToday));
+      } catch (e) {}
+    }
+
+    function saveTotalComplexes() {
+      try {
+        localStorage.setItem(
+          STORAGE_KEYS.TOTAL_COMPLEX_VAL,
+          String(totalComplexes)
+        );
+      } catch (e) {}
+    }
+
+    function saveBestStreak() {
+      try {
+        localStorage.setItem(
+          STORAGE_KEYS.BEST_STREAK_VAL,
+          String(bestStreak)
+        );
       } catch (e) {}
     }
 
@@ -1119,33 +1614,101 @@
       } catch (e) {}
     }
 
-    function playPing() {
+    // Короткий счётчик 5...1
+    function playCountdownBeep() {
+      try {
+        ensureAudio();
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(1100, now);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(0.12, now + 0.01);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+        osc.start(now);
+        osc.stop(now + 0.14);
+        vibrate(10);
+      } catch (e) {}
+    }
+
+    // Звук окончания упражнения
+    function playExerciseEndSound() {
       try {
         ensureAudio();
         const now = audioCtx.currentTime;
 
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(880, now);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        gain.gain.setValueAtTime(0.0001, now);
-        gain.gain.exponentialRampToValueAtTime(0.18, now + 0.01);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.35);
-        osc.start(now);
-        osc.stop(now + 0.4);
+        function tone(t, freq) {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(freq, t);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          gain.gain.setValueAtTime(0.0001, t);
+          gain.gain.exponentialRampToValueAtTime(0.18, t + 0.01);
+          gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.32);
+          osc.start(t);
+          osc.stop(t + 0.35);
+        }
 
+        tone(now, 820);
+        tone(now + 0.25, 620);
         vibrate([40, 40]);
       } catch (e) {}
     }
 
-    // ---- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ----
+    // ---- ХЕЛПЕРЫ ----
 
     function formatTime(sec) {
       const m = Math.floor(sec / 60);
       const s = sec % 60;
       return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+    }
+
+    function updateAvatarForExercise(ex) {
+      const type = ex.type;
+      const view = ex.view || "front";
+      avatarEl.className = `avatar-inner avatar--${type} avatar--view-${view}`;
+    }
+
+    function updateStatsText() {
+      statsTodayEl.textContent = `Сегодня: ${complexesToday} ${pluralRu(complexesToday, ["комплекс", "комплекса", "комплексов"])} · глаза: ${eyesToday}`;
+      streakTextEl.textContent = `${streakDays} ${pluralRu(streakDays, ["день", "дня", "дней"])}`;
+    }
+
+    function updateAchievementsView() {
+      achTotalComplexesEl.textContent = String(totalComplexes);
+      achTodayLineEl.textContent = `Сегодня: ${complexesToday} ${pluralRu(complexesToday, ["комплекс", "комплекса", "комплексов"])}`;
+      achBestStreakEl.textContent = `${bestStreak} ${pluralRu(bestStreak, ["день", "дня", "дней"])}`;
+      achEyesTodayEl.textContent = `${eyesToday} ${pluralRu(eyesToday, ["упражнение", "упражнения", "упражнений"])}`;
+
+      // Бейджи
+      if (totalComplexes >= 1) {
+        achFirstComplexEl.classList.add("achieved");
+      } else {
+        achFirstComplexEl.classList.remove("achieved");
+      }
+
+      if (complexesToday >= 3) {
+        achThreeTodayEl.classList.add("achieved");
+      } else {
+        achThreeTodayEl.classList.remove("achieved");
+      }
+
+      if (eyesToday >= 5) {
+        achEyesHeroEl.classList.add("achieved");
+      } else {
+        achEyesHeroEl.classList.remove("achieved");
+      }
+
+      if (streakDays >= 7) {
+        achStreakSevenEl.classList.add("achieved");
+      } else {
+        achStreakSevenEl.classList.remove("achieved");
+      }
     }
 
     function updateUI() {
@@ -1158,10 +1721,8 @@
       exerciseTitleEl.textContent = `${ex.area} • ${ex.name}`;
       exerciseSubEl.textContent = ex.description;
 
-      // Анимация аватара
-      avatarEl.className = `avatar-inner avatar--${ex.type}`;
+      updateAvatarForExercise(ex);
 
-      // Прогресс комплекса
       const ratio =
         totalComplexSeconds > 0
           ? Math.max(0, Math.min(1, elapsedComplexSeconds / totalComplexSeconds))
@@ -1170,10 +1731,12 @@
 
       statusTextEl.textContent = isRunning
         ? "Комплекс в процессе"
-        : "Комплекс на паузе";
+        : hasStartedComplex
+          ? "Комплекс на паузе"
+          : "Комплекс не запущен";
 
-      statsTodayEl.textContent = `Сегодня: ${complexesToday} комплексов · глаза: ${eyesToday}`;
-      streakTextEl.textContent = `${streakDays} дн.`;
+      updateStatsText();
+      updateAchievementsView();
     }
 
     function setProgram(key) {
@@ -1183,6 +1746,7 @@
       remainingSeconds = currentExercises[0].duration;
       totalComplexSeconds = currentExercises.reduce((s, e) => s + e.duration, 0);
       elapsedComplexSeconds = 0;
+      hasStartedComplex = false;
       stopTimer();
       startPauseBtn.innerHTML = "<span>▶</span><span>Старт</span>";
       statusTextEl.textContent = "Комплекс не запущен";
@@ -1200,10 +1764,16 @@
         remainingSeconds--;
         elapsedComplexSeconds++;
 
+        if (remainingSeconds <= 5 && remainingSeconds > 0) {
+          playCountdownBeep();
+        }
+
         if (remainingSeconds <= 0) {
           remainingSeconds = 0;
           updateUI();
-          handleExerciseComplete();
+          stopTimer();
+          playExerciseEndSound();
+          handleExerciseComplete(false);
         } else {
           updateUI();
         }
@@ -1232,51 +1802,10 @@
       remainingSeconds = currentExercises[0].duration;
       totalComplexSeconds = currentExercises.reduce((s, e) => s + e.duration, 0);
       elapsedComplexSeconds = 0;
+      hasStartedComplex = false;
       startPauseBtn.innerHTML = "<span>▶</span><span>Старт</span>";
       statusTextEl.textContent = "Комплекс не запущен";
       updateUI();
-    }
-
-    function handleExerciseComplete(skipOnly = false) {
-      const ex = currentExercises[currentIndex];
-
-      // считаем глазные упражнения
-      if (ex.type === "eyes" && !skipOnly) {
-        eyesToday++;
-        saveEyesToday();
-      }
-
-      playPing();
-
-      currentIndex++;
-      if (currentIndex >= currentExercises.length) {
-        // Комплекс завершён
-        stopTimer();
-        isRunning = false;
-
-        elapsedComplexSeconds = totalComplexSeconds;
-
-        if (!skipOnly) {
-          complexesToday++;
-          saveComplexesToday();
-
-          // Обновляем серию: если сегодня есть хотя бы 1 комплекс, серия не обнуляется
-          if (complexesToday === 1 && streakDays === 0) {
-            streakDays = 1;
-          } else if (complexesToday > 0 && streakDays >= 0) {
-            // на сегодня уже считали в initStreak, не увеличиваем ещё раз
-          }
-          saveStreak();
-        }
-
-        updateUI();
-        openDoneModal();
-      } else {
-        stopTimer();
-        remainingSeconds = currentExercises[currentIndex].duration;
-        startTimer();
-        updateUI();
-      }
     }
 
     function openDoneModal() {
@@ -1292,14 +1821,128 @@
       doneModal.classList.add("hidden");
     }
 
-    // ---- СОВЕТЫ ----
+    function openExerciseIntroModal(nextIndex, isFirst) {
+      const ex = currentExercises[nextIndex];
+      const totalCount = currentExercises.length;
+      const num = nextIndex + 1;
+
+      exerciseModalNextIndex = nextIndex;
+      exerciseModalMode = isFirst ? "start" : "switch";
+
+      if (isFirst) {
+        exerciseModalTitle.textContent = `Упражнение ${num}`;
+      } else {
+        exerciseModalTitle.textContent = `Упражнение ${num}`;
+      }
+
+      const areaPart = ex.area ? `${ex.area} • ${ex.name}` : ex.name;
+      exerciseModalText.textContent = `${areaPart}. ${ex.description}`;
+
+      exerciseModalBtn.textContent = isFirst
+        ? "Начать упражнение"
+        : "Перейти к следующему";
+
+      exerciseModal.classList.remove("hidden");
+    }
+
+    function closeExerciseModal() {
+      exerciseModal.classList.add("hidden");
+    }
+
+    function handleExerciseComplete(skipOnly = false) {
+      const finishedEx = currentExercises[currentIndex];
+
+      if (finishedEx.type === "eyes" && !skipOnly) {
+        eyesToday++;
+        saveEyesToday();
+      }
+
+      currentIndex++;
+
+      if (currentIndex >= currentExercises.length) {
+        // Комплекс завершён
+        if (!skipOnly) {
+          complexesToday++;
+          saveComplexesToday();
+
+          if (complexesToday === 1 && streakDays === 0) {
+            streakDays = 1;
+          }
+          saveStreak();
+
+          totalComplexes++;
+          saveTotalComplexes();
+
+          if (streakDays > bestStreak) {
+            bestStreak = streakDays;
+            saveBestStreak();
+          }
+        }
+
+        elapsedComplexSeconds = totalComplexSeconds;
+        updateUI();
+        openDoneModal();
+      } else {
+        // Переход к следующему упражнению: табличка с описанием
+        const nextIndex = currentIndex;
+        remainingSeconds = currentExercises[nextIndex].duration;
+        updateUI();
+        openExerciseIntroModal(nextIndex, false);
+      }
+    }
 
     function updateTip() {
       const tip = TIPS[tipIndex % TIPS.length];
       tipTextEl.innerHTML = `<strong>Совет:</strong> ${tip}`;
     }
 
+    // ---- ПЕРЕКЛЮЧЕНИЕ ЭКРАНОВ / ВКЛАДОК ----
+
+    function showHub() {
+      screenHub.classList.remove("hidden");
+      screenStretch.classList.add("hidden");
+      stopTimer();
+    }
+
+    function showStretch() {
+      screenHub.classList.add("hidden");
+      screenStretch.classList.remove("hidden");
+    }
+
+    function activateTab(tab) {
+      if (tab === "workout") {
+        tabWorkout.classList.add("active");
+        tabAchievements.classList.remove("active");
+        viewWorkout.classList.remove("hidden");
+        viewAchievements.classList.add("hidden");
+      } else {
+        tabWorkout.classList.remove("active");
+        tabAchievements.classList.add("active");
+        viewWorkout.classList.add("hidden");
+        viewAchievements.classList.remove("hidden");
+      }
+    }
+
     // ---- СОБЫТИЯ ----
+
+    hubPomodoro.addEventListener("click", () => {
+      playTap();
+      try {
+        window.location.href = POMODORO_URL;
+      } catch (e) {
+        window.open(POMODORO_URL, "_blank");
+      }
+    });
+
+    hubStretch.addEventListener("click", () => {
+      playTap();
+      showStretch();
+    });
+
+    backToHubBtn.addEventListener("click", () => {
+      playTap();
+      showHub();
+    });
 
     modeButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -1316,7 +1959,12 @@
       if (isRunning) {
         pauseTimer();
       } else {
-        startTimer();
+        // Если это самое начало комплекса — сначала табличка с описанием 1-го упражнения
+        if (!hasStartedComplex && elapsedComplexSeconds === 0) {
+          openExerciseIntroModal(currentIndex, true);
+        } else {
+          startTimer();
+        }
       }
     });
 
@@ -1349,11 +1997,43 @@
       }
     });
 
+    exerciseModalBtn.addEventListener("click", () => {
+      playTap();
+      closeExerciseModal();
+
+      currentIndex = exerciseModalNextIndex;
+      remainingSeconds = currentExercises[currentIndex].duration;
+      updateUI();
+
+      if (exerciseModalMode === "start") {
+        hasStartedComplex = true;
+      }
+      startTimer();
+    });
+
+    exerciseModal.addEventListener("click", (e) => {
+      if (e.target === exerciseModal) {
+        // клик по фону — не закрываем, чтобы не потерять инструкцию
+      }
+    });
+
+    tabWorkout.addEventListener("click", () => {
+      playTap();
+      activateTab("workout");
+    });
+
+    tabAchievements.addEventListener("click", () => {
+      playTap();
+      activateTab("achievements");
+    });
+
     // ---- ИНИЦИАЛИЗАЦИЯ ----
 
     loadTodayCounters();
     updateTip();
     updateUI();
+    activateTab("workout");
+    showHub();
   </script>
 </body>
 </html>
