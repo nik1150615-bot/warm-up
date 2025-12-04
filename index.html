@@ -2,1867 +2,2038 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>Курс Python: игры, кино и код</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>METTA Hub • Focus & Stretch</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    :root {
-      --bg: #050816;
-      --bg-elevated: #0b1020;
-      --bg-card: #111827;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.12);
-      --accent-strong: #0ea5e9;
-      --text: #e5e7eb;
-      --text-muted: #9ca3af;
-      --danger: #f97373;
-      --success: #4ade80;
-      --border: rgba(148, 163, 184, 0.25);
-      --radius-lg: 18px;
-    }
-
     * {
       box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      min-height: 100vh;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #1d2538 0, #050816 40%, #020617 100%);
-      color: var(--text);
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #e0f2fe 0, #f9fafb 40%, #f9fafb 100%);
+      color: #0f172a;
       display: flex;
       justify-content: center;
-      padding: 20px;
+      min-height: 100vh;
     }
 
-    .app {
-      max-width: 1200px;
+    .shell {
       width: 100%;
-      background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
-      border-radius: 28px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
+      max-width: 460px;
+      padding: 12px 10px;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+    }
+
+    .card {
+      width: 100%;
+      max-height: 760px;
+      min-height: 560px;
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 18px 18px 14px;
       box-shadow:
-        0 20px 40px rgba(15, 23, 42, 0.8),
-        0 0 90px rgba(56, 189, 248, 0.15);
-      overflow: hidden;
+        0 18px 45px rgba(15, 23, 42, 0.16),
+        0 0 0 1px rgba(148, 163, 184, 0.22);
       display: flex;
       flex-direction: column;
     }
 
-    header {
-      padding: 18px 22px;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      backdrop-filter: blur(18px);
-      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.22), transparent 55%),
-                  linear-gradient(to right, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.95));
+    .hidden {
+      display: none;
     }
 
-    .brand {
+    .header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+
+    .header-left {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
+    }
+
+    .back-btn {
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      margin-right: 4px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.10);
+      color: #1d4ed8;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin: 6px 0 2px;
+      color: #0f172a;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #6b7280;
+      max-width: 260px;
     }
 
     .logo {
-      width: 40px;
-      height: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .logo-mark {
+      width: 28px;
+      height: 28px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: radial-gradient(circle at 30% 20%, #facc15 0, #f97316 30%, #0f172a 70%);
-      box-shadow:
-        0 0 25px rgba(250, 204, 21, 0.7),
-        0 0 60px rgba(56, 189, 248, 0.45);
+      background: #0f172a;
+      color: #f9fafb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 15px;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.4);
+    }
+
+    .logo-text-main {
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    .logo-sub {
+      font-size: 9px;
+      color: #9ca3af;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* HUB */
+
+    .hub-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #0f172a;
+    }
+
+    .hub-subtitle {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 14px;
+      max-width: 320px;
+    }
+
+    .hub-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+      flex: 1;
+    }
+
+    .hub-card {
+      border-radius: 18px;
+      padding: 12px 12px;
+      background: radial-gradient(circle at top left, #dbeafe 0, #eff6ff 40%, #f3f4f6 100%);
+      border: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.18);
+    }
+
+    .hub-card-secondary {
+      background: radial-gradient(circle at top left, #dcfce7 0, #ecfdf5 40%, #f3f4f6 100%);
+    }
+
+    .hub-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: #0f172a;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 22px;
-      font-weight: 700;
-      color: #020617;
+      color: #f9fafb;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.4);
+      flex-shrink: 0;
     }
 
-    .brand-title {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .brand-title h1 {
-      font-size: 18px;
-      margin: 0;
-      letter-spacing: 0.03em;
-    }
-
-    .brand-title span {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .pill {
-      border-radius: 999px;
-      padding: 6px 10px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .pill-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--success);
-      box-shadow: 0 0 12px rgba(74, 222, 128, 0.7);
-    }
-
-    main.layout {
-      display: grid;
-      grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
-      min-height: 540px;
-      max-height: calc(100vh - 140px);
-    }
-
-    aside.sidebar {
-      border-right: 1px solid rgba(148, 163, 184, 0.24);
-      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.98));
-      padding: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .sidebar-section-title {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-muted);
-    }
-
-    .progress-card {
-      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.2), transparent 60%),
-        rgba(15, 23, 42, 0.96);
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(148, 163, 184, 0.55);
-      padding: 10px 12px;
-      font-size: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 6px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      width: 0%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-strong));
-      box-shadow: 0 0 18px rgba(56, 189, 248, 0.9);
-      transition: width 0.3s ease-out;
-    }
-
-    .progress-meta {
-      display: flex;
-      justify-content: space-between;
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .lessons-list {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-top: 4px;
-    }
-
-    .lesson-item {
-      border-radius: 12px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      padding: 8px 9px;
-      font-size: 13px;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 6px;
-      transition: all 0.18s ease-out;
-    }
-
-    .lesson-item:hover {
-      border-color: var(--accent);
-      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), rgba(15, 23, 42, 0.95));
-      transform: translateY(-1px);
-    }
-
-    .lesson-item.active {
-      border-color: var(--accent-strong);
-      background: linear-gradient(120deg, rgba(15, 23, 42, 0.96), rgba(8, 47, 73, 0.95));
-      box-shadow: 0 0 24px rgba(56, 189, 248, 0.45);
-    }
-
-    .lesson-left {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .lesson-title {
-      font-size: 13px;
-    }
-
-    .lesson-desc {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .lesson-meta {
-      font-size: 10px;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .pill-small {
-      border-radius: 999px;
-      padding: 2px 7px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: rgba(15, 23, 42, 0.95);
-      font-size: 10px;
-    }
-
-    .lesson-status-icon {
-      font-size: 16px;
-      line-height: 1;
-    }
-
-    section.content {
-      padding: 14px 16px 16px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      overflow: hidden;
-    }
-
-    .content-top {
-      display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(260px, 1.3fr);
-      gap: 10px;
-      min-height: 260px;
-      max-height: 360px;
-    }
-
-    .card {
-      background: rgba(15, 23, 42, 0.97);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      padding: 10px 12px;
-      font-size: 14px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 60%);
-      opacity: 0.9;
-      pointer-events: none;
-    }
-
-    .card-inner {
-      position: relative;
-      z-index: 1;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-    }
-
-    .card-title {
+    .hub-text-main {
+      font-size: 15px;
       font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      color: #111827;
     }
 
-    .card-title span.badge {
-      font-size: 10px;
-      padding: 2px 7px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--text-muted);
-    }
-
-    .mini-tags {
-      display: flex;
-      gap: 4px;
-      font-size: 10px;
-      color: var(--text-muted);
-    }
-
-    .theory-text {
-      margin-top: 4px;
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.35;
-      overflow-y: auto;
-      padding-right: 4px;
-    }
-
-    .theory-text p {
-      margin: 0 0 5px 0;
-    }
-
-    .theory-text ul {
-      padding-left: 18px;
-      margin: 0 0 6px 0;
-    }
-
-    .theory-highlight {
-      padding: 6px 8px;
-      border-radius: 10px;
-      background: rgba(15, 23, 42, 0.98);
-      border: 1px dashed rgba(148, 163, 184, 0.6);
+    .hub-text-sub {
       font-size: 12px;
-      margin-top: 3px;
+      color: #4b5563;
+      margin-top: 2px;
     }
 
-    .tasks-list {
+    .hub-tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.06);
+      color: #111827;
       margin-top: 6px;
-      display: flex;
-      flex-direction: column;
+      display: inline-flex;
+      align-items: center;
       gap: 4px;
-      overflow-y: auto;
-      padding-right: 4px;
     }
 
-    .task-item {
-      border-radius: 10px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 6px 7px;
-      font-size: 12px;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 6px;
-      background: rgba(15, 23, 42, 0.97);
-      transition: all 0.18s ease-out;
-    }
-
-    .task-item:hover {
-      border-color: var(--accent);
-      background: rgba(15, 23, 42, 0.98);
-    }
-
-    .task-item.active {
-      border-color: var(--accent-strong);
-      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), rgba(15, 23, 42, 0.98));
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
-    }
-
-    .task-left {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .task-title {
-      font-size: 12px;
-    }
-
-    .task-desc {
+    .hub-footer {
       font-size: 11px;
-      color: var(--text-muted);
+      color: #9ca3af;
+      margin-top: 10px;
+      text-align: left;
     }
 
-    .task-meta {
-      font-size: 10px;
-      color: var(--text-muted);
-      display: flex;
-      gap: 6px;
-    }
+    /* ВКЛАДКИ (Тренировка / Достижения) */
 
-    .content-bottom {
-      flex: 1;
-      min-height: 220px;
-      max-height: 340px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .editor-toolbar {
-      display: flex;
-      justify-content: space-between;
+    .top-tabs {
+      display: inline-flex;
       align-items: center;
-      font-size: 12px;
-      color: var(--text-muted);
-      padding: 0 4px;
-    }
-
-    .editor-toolbar-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .editor-toolbar-right {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .code-badge {
+      background: #f3f4f6;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      padding: 2px 8px;
-      font-size: 11px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      background: rgba(15, 23, 42, 0.95);
+      padding: 3px;
+      gap: 4px;
+      margin-bottom: 8px;
+      margin-top: 2px;
     }
 
-    .editor-card {
-      flex: 1;
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 8px;
-    }
-
-    .code-area {
-      background: rgba(15, 23, 42, 0.97);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .output-area {
-      background: rgba(15, 23, 42, 0.97);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .code-header,
-    .output-header {
-      padding: 7px 9px;
-      font-size: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: radial-gradient(circle at top left, rgba(15, 23, 42, 1), rgba(2, 6, 23, 0.96));
-      border-bottom: 1px solid rgba(15, 23, 42, 0.9);
-    }
-
-    textarea#code-editor {
-      flex: 1;
+    .top-tab-btn {
+      border-radius: 999px;
       border: none;
-      resize: none;
-      padding: 10px;
-      background: radial-gradient(circle at top, #000000, #020617);
-      color: var(--text);
-      font-family: "JetBrains Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono",
-        "Courier New", monospace;
-      font-size: 13px;
-      line-height: 1.3;
-      outline: none;
-      tab-size: 4;
-      overflow: auto;
+      background: transparent;
+      font-size: 11px;
+      padding: 5px 10px;
+      cursor: pointer;
+      color: #6b7280;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 500;
     }
 
-    pre#output {
+    .top-tab-btn span:first-child {
+      font-size: 14px;
+    }
+
+    .top-tab-btn.active {
+      background: #ffffff;
+      color: #0f172a;
+      box-shadow:
+        0 0 0 1px rgba(148, 163, 184, 0.7),
+        0 4px 10px rgba(15, 23, 42, 0.08);
+    }
+
+    .mode-switch {
+      margin-top: 4px;
+      margin-bottom: 10px;
+      display: flex;
+      gap: 6px;
+      background: #f3f4f6;
+      padding: 4px;
+      border-radius: 999px;
+    }
+
+    .mode-btn {
       flex: 1;
-      margin: 0;
-      padding: 10px;
-      white-space: pre-wrap;
-      font-family: "JetBrains Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono",
-        "Courier New", monospace;
-      font-size: 12px;
-      background: radial-gradient(circle at top, #020617, #000000);
-      color: var(--text-muted);
-      overflow: auto;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      font-size: 11px;
+      padding: 6px 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      color: #6b7280;
+      font-weight: 500;
+      white-space: nowrap;
     }
 
-    .buttons-row {
-      padding: 6px 9px 8px 9px;
-      border-top: 1px solid rgba(30, 64, 175, 0.8);
+    .mode-btn span:first-child {
+      font-size: 14px;
+    }
+
+    .mode-btn.active {
+      background: #ffffff;
+      color: #0f172a;
+      box-shadow:
+        0 0 0 1px rgba(148, 163, 184, 0.6),
+        0 4px 10px rgba(15, 23, 42, 0.08);
+    }
+
+    .status-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: linear-gradient(to right, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.95));
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 8px;
-    }
-
-    button {
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: rgba(15, 23, 42, 0.96);
-      color: var(--text);
       font-size: 12px;
-      padding: 6px 14px;
-      cursor: pointer;
+      margin-bottom: 6px;
+    }
+
+    .status-left {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: all 0.16s ease-out;
-    }
-
-    button.primary {
-      border-color: var(--accent-strong);
-      background: radial-gradient(circle at top, #0ea5e9, #0369a1);
-      color: #0b1120;
-      box-shadow:
-        0 0 18px rgba(56, 189, 248, 0.7),
-        0 0 40px rgba(37, 99, 235, 0.7);
-      font-weight: 600;
-    }
-
-    button.outline-soft {
-      background: rgba(15, 23, 42, 0.98);
-    }
-
-    button:disabled {
-      opacity: 0.5;
-      cursor: default;
-      box-shadow: none;
-    }
-
-    button:not(:disabled):hover {
-      transform: translateY(-0.5px);
-      box-shadow: 0 0 16px rgba(56, 189, 248, 0.45);
-    }
-
-    .status-indicator {
-      font-size: 11px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      color: #16a34a;
+      font-weight: 500;
     }
 
     .status-dot {
       width: 8px;
       height: 8px;
       border-radius: 999px;
-      background: var(--text-muted);
-      box-shadow: none;
+      background: #16a34a;
     }
 
-    .status-dot.ok {
-      background: var(--success);
-      box-shadow: 0 0 12px rgba(74, 222, 128, 0.8);
-    }
-
-    .status-dot.bad {
-      background: var(--danger);
-      box-shadow: 0 0 12px rgba(248, 113, 113, 0.8);
-    }
-
-    footer {
-      border-top: 1px solid rgba(148, 163, 184, 0.25);
-      padding: 6px 14px 10px 14px;
-      font-size: 11px;
-      color: var(--text-muted);
-      display: flex;
-      justify-content: space-between;
+    .status-right {
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 4px;
+      color: #6b7280;
     }
 
-    #loader {
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.98));
-      z-index: 999;
+    .status-right span:first-child {
+      font-size: 14px;
     }
 
-    #loader.active {
-      display: flex;
-    }
-
-    .loader-inner {
-      background: rgba(15, 23, 42, 0.98);
-      border-radius: 24px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      padding: 16px 20px;
+    .center {
+      flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      max-width: 320px;
-      box-shadow:
-        0 20px 40px rgba(15, 23, 42, 0.9),
-        0 0 60px rgba(56, 189, 248, 0.3);
+      align-items: center;
+      justify-content: flex-start;
+      margin-top: 4px;
+      margin-bottom: 10px;
     }
 
-    .loader-bar {
-      width: 100%;
-      height: 6px;
+    .avatar-shell {
+      width: 210px;
+      height: 210px;
       border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      overflow: hidden;
+      background: radial-gradient(circle at top, #e0f2fe 0, #eff6ff 45%, #e5e7eb 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 8px 24px rgba(15, 23, 42, 0.18),
+        0 0 0 1px rgba(148, 163, 184, 0.36);
       position: relative;
     }
 
-    .loader-bar-fill {
+    .avatar-inner {
+      width: 130px;
+      height: 130px;
+      position: relative;
+    }
+
+    .avatar-base {
       position: absolute;
       inset: 0;
-      border-radius: inherit;
-      background: linear-gradient(90deg, #38bdf8, #0ea5e9, #22c55e);
-      background-size: 200% 100%;
-      animation: loader-anim 1.2s linear infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    @keyframes loader-anim {
-      0% {
-        transform: translateX(-50%);
+    .avatar-body {
+      width: 56px;
+      height: 70px;
+      border-radius: 28px 28px 20px 20px;
+      background: #0f172a;
+      position: relative;
+      top: 20px;
+      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.4);
+      transform-origin: center bottom;
+    }
+
+    .avatar-neck {
+      width: 18px;
+      height: 14px;
+      background: #0f172a;
+      border-radius: 8px;
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .avatar-head {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #fbbf24;
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-origin: 50% 100%;
+    }
+
+    .avatar-face {
+      width: 70%;
+      height: 70%;
+      border-radius: 999px;
+      background: rgba(250, 250, 249, 0.18);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .eye {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: #0f172a;
+      position: absolute;
+      top: 40%;
+    }
+
+    .eye-left {
+      left: 30%;
+    }
+
+    .eye-right {
+      right: 30%;
+    }
+
+    .mouth {
+      width: 12px;
+      height: 6px;
+      border-radius: 999px;
+      border: 2px solid #0f172a;
+      border-top: none;
+      position: absolute;
+      bottom: 22%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .arm {
+      width: 16px;
+      height: 46px;
+      border-radius: 999px;
+      background: #0f172a;
+      position: absolute;
+      top: 8px;
+      transform-origin: top center;
+    }
+
+    .arm-left {
+      left: -8px;
+    }
+
+    .arm-right {
+      right: -8px;
+    }
+
+    .back-line {
+      position: absolute;
+      width: 4px;
+      height: 80px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      left: 50%;
+      transform: translateX(40px);
+      top: 20px;
+      opacity: 0.7;
+    }
+
+    .avatar-shadow {
+      position: absolute;
+      width: 90px;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.08);
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      filter: blur(4px);
+    }
+
+    /* РАКУРСЫ */
+
+    .avatar--view-front .avatar-body {
+      transform: rotate(0deg);
+    }
+
+    .avatar--view-side .avatar-body {
+      transform: rotate(6deg);
+    }
+
+    .avatar--view-side .back-line {
+      transform: translateX(32px);
+      opacity: 0.9;
+    }
+
+    .avatar--view-side .arm-left {
+      opacity: 0.0;
+    }
+
+    .avatar--view-side .arm-right {
+      transform: rotate(10deg);
+    }
+
+    .avatar--view-front .arm-left,
+    .avatar--view-front .arm-right {
+      opacity: 1;
+      transform: rotate(0deg);
+    }
+
+    /* АНИМАЦИИ */
+
+    @keyframes nod {
+      0%, 100% { transform: translateX(-50%) rotate(0deg); }
+      30% { transform: translateX(-50%) rotate(10deg); }
+      60% { transform: translateX(-50%) rotate(-8deg); }
+    }
+
+    @keyframes nod-side {
+      0%, 100% { transform: translateX(-50%) rotate(6deg); }
+      30% { transform: translateX(-50%) rotate(14deg); }
+      60% { transform: translateX(-50%) rotate(-2deg); }
+    }
+
+    @keyframes shoulder-roll-left {
+      0%, 100% { transform: rotate(8deg); }
+      50% { transform: rotate(-16deg); }
+    }
+
+    @keyframes shoulder-roll-right {
+      0%, 100% { transform: rotate(-8deg); }
+      50% { transform: rotate(16deg); }
+    }
+
+    @keyframes eyes-move {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-3px); }
+      50% { transform: translateX(3px); }
+      75% { transform: translateX(-3px); }
+    }
+
+    @keyframes torso-breath {
+      0%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(1.06); }
+    }
+
+    .avatar--neck .avatar-head {
+      animation: nod 2s ease-in-out infinite;
+    }
+
+    .avatar--neck.avatar--view-side .avatar-head {
+      animation: nod-side 2.4s ease-in-out infinite;
+    }
+
+    .avatar--shoulders .arm-left {
+      animation: shoulder-roll-left 1.8s ease-in-out infinite;
+    }
+
+    .avatar--shoulders .arm-right {
+      animation: shoulder-roll-right 1.8s ease-in-out infinite;
+    }
+
+    .avatar--back .avatar-body {
+      animation: torso-breath 2.2s ease-in-out infinite;
+    }
+
+    .avatar--eyes .eye-left,
+    .avatar--eyes .eye-right {
+      animation: eyes-move 2s ease-in-out infinite;
+    }
+
+    .avatar--breath .avatar-body {
+      animation: torso-breath 2.2s ease-in-out infinite;
+    }
+
+    .avatar--breath .avatar-head {
+      animation: nod 3s ease-in-out infinite;
+    }
+
+    .timer-block {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .timer {
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #0f172a;
+    }
+
+    .exercise-title {
+      margin-top: 4px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .exercise-sub {
+      margin-top: 2px;
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    .progress-shell {
+      width: 100%;
+      max-width: 260px;
+      margin: 10px auto 0;
+      height: 6px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #22c55e, #3b82f6);
+      border-radius: 999px;
+      transition: width 0.25s ease-out;
+    }
+
+    .controls {
+      margin-top: 14px;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .btn-main {
+      border-radius: 999px;
+      padding: 9px 20px;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      background: #22c55e;
+      color: #022c22;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow:
+        0 10px 22px rgba(34, 197, 94, 0.35),
+        0 0 0 1px rgba(22, 163, 74, 0.7);
+    }
+
+    .btn-main span:first-child {
+      font-size: 16px;
+    }
+
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 8px 14px;
+      border: 1px solid #e5e7eb;
+      font-size: 13px;
+      cursor: pointer;
+      background: #ffffff;
+      color: #4b5563;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-ghost span:first-child {
+      font-size: 14px;
+    }
+
+    .stats-row {
+      margin-top: 12px;
+      font-size: 11px;
+      color: #6b7280;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .stats-left {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .stats-right {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: default;
+    }
+
+    .streak-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #fef3c7;
+      color: #92400e;
+      font-size: 11px;
+    }
+
+    .streak-fire {
+      font-size: 14px;
+    }
+
+    .tip-block {
+      margin-top: 10px;
+      padding: 8px 10px;
+      border-radius: 14px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12px;
+      color: #374151;
+    }
+
+    .tip-icon {
+      font-size: 16px;
+      margin-top: 1px;
+    }
+
+    .tip-text strong {
+      font-weight: 600;
+    }
+
+    .tip-next {
+      margin-left: auto;
+      align-self: center;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* МОДАЛКИ */
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.35);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 20;
+    }
+
+    .modal-backdrop.hidden {
+      display: none;
+    }
+
+    .modal {
+      width: 100%;
+      max-width: 320px;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 18px 16px 14px;
+      box-shadow:
+        0 20px 40px rgba(15, 23, 42, 0.35),
+        0 0 0 1px rgba(148, 163, 184, 0.4);
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #111827;
+    }
+
+    .modal-text {
+      font-size: 13px;
+      color: #4b5563;
+      margin-bottom: 12px;
+    }
+
+    .modal-footer {
+      text-align: right;
+    }
+
+    .modal-btn {
+      border-radius: 999px;
+      border: none;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      background: #22c55e;
+      color: #022c22;
+      cursor: pointer;
+      box-shadow:
+        0 8px 18px rgba(34, 197, 94, 0.35),
+        0 0 0 1px rgba(22, 163, 74, 0.7);
+    }
+
+    /* ДОСТИЖЕНИЯ */
+
+    .ach-view {
+      margin-top: 8px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ach-summary {
+      border-radius: 16px;
+      padding: 10px 10px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      margin-bottom: 10px;
+    }
+
+    .ach-summary-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+
+    .ach-summary-number {
+      font-size: 24px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .ach-summary-label {
+      font-size: 12px;
+      color: #4b5563;
+    }
+
+    .ach-summary-sub {
+      font-size: 11px;
+      color: #6b7280;
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .ach-badges-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      font-size: 11px;
+    }
+
+    .ach-badge {
+      border-radius: 14px;
+      border: 1px dashed #e5e7eb;
+      padding: 8px 8px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .ach-badge-title {
+      font-weight: 600;
+      color: #111827;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .ach-badge-desc {
+      color: #6b7280;
+    }
+
+    .ach-badge.achieved {
+      border-style: solid;
+      border-color: #22c55e;
+      background: #ecfdf5;
+      box-shadow: 0 0 0 1px rgba(22, 163, 74, 0.6);
+    }
+
+    .ach-badge-icon {
+      font-size: 14px;
+    }
+
+    @media (max-width: 420px) {
+      .card {
+        border-radius: 18px;
+        padding: 14px 12px 10px;
       }
-      100% {
-        transform: translateX(50%);
+      .avatar-shell {
+        width: 190px;
+        height: 190px;
+      }
+      .timer {
+        font-size: 30px;
       }
     }
 
-    @media (max-width: 960px) {
-      main.layout {
-        grid-template-columns: 1fr;
-      }
-      aside.sidebar {
-        min-height: 180px;
-        max-height: 240px;
-      }
-    }
-
-    @media (max-width: 760px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .content-top {
-        grid-template-columns: 1fr;
+    @media (max-height: 600px) and (orientation: landscape) {
+      .card {
         max-height: none;
       }
-      .editor-card {
-        grid-template-columns: 1fr;
-      }
-      .app {
-        max-height: none;
+      .avatar-shell {
+        transform: scale(0.9);
       }
     }
   </style>
 </head>
 <body>
-  <div id="loader" class="active">
-    <div class="loader-inner">
-      <div style="font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;">
-        <span style="font-size:18px;">🐍</span>
-        <span>Загружаем Python-движок в браузер…</span>
+  <div class="shell">
+    <!-- ХАБ -->
+    <div id="screenHub" class="card">
+      <div class="header">
+        <div>
+          <div class="badge">
+            <span class="badge-dot"></span>
+            METTA • Hub
+          </div>
+          <div class="hub-title">Выбери режим</div>
+          <div class="hub-subtitle">
+            Таймер фокуса и разминка для спины — два маленьких инструмента, чтобы сидеть и работать комфортнее.
+          </div>
+        </div>
+        <div class="logo">
+          <div class="logo-mark">M</div>
+          <div class="logo-text-main">METTA</div>
+          <div class="logo-sub">ERGONOMIC CHAIRS</div>
+        </div>
       </div>
-      <div style="font-size:12px;color:#9ca3af;">
-        Как загрузочный экран в игре: чуть подождать — и можно писать код прямо здесь.
+
+      <div class="hub-grid">
+        <div id="hubPomodoro" class="hub-card">
+          <div class="hub-icon">⏱</div>
+          <div>
+            <div class="hub-text-main">Pomodoro для спины</div>
+            <div class="hub-text-sub">Работа по таймеру, фокус/перерыв, ачивки и серия дней.</div>
+            <div class="hub-tag">
+              <span>▶</span><span>Открыть Pomodoro</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="hubStretch" class="hub-card hub-card-secondary">
+          <div class="hub-icon">🧍‍♂️</div>
+          <div>
+            <div class="hub-text-main">Разминка для спины</div>
+            <div class="hub-text-sub">Короткий комплекс упражнений для шеи, спины и глаз за столом.</div>
+            <div class="hub-tag">
+              <span>✨</span><span>Открыть разминку</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="flex:1"></div>
+
+        <div class="hub-footer">
+          Совместимо с креслами METTA: настрой высоту, опору поясницы и подголовник — и приложения станут частью твоего рабочего ритуала.
+        </div>
       </div>
-      <div class="loader-bar">
-        <div class="loader-bar-fill"></div>
+    </div>
+
+    <!-- ЭКРАН РАЗМИНКИ -->
+    <div id="screenStretch" class="card hidden">
+      <div class="header">
+        <div class="header-left">
+          <button id="backToHubBtn" class="back-btn">←</button>
+          <div>
+            <div class="badge">
+              <span class="badge-dot"></span>
+              METTA • Stretch
+            </div>
+            <h1>Разминка для спины</h1>
+            <div class="subtitle">
+              Короткий комплекс для шеи, спины и глаз прямо за рабочим столом.
+            </div>
+          </div>
+        </div>
+        <div class="logo">
+          <div class="logo-mark">M</div>
+          <div class="logo-text-main">METTA</div>
+          <div class="logo-sub">ERGONOMIC CHAIRS</div>
+        </div>
       </div>
-      <div style="font-size:11px;color:#6b7280;">
-        Если загрузка не идёт: проверь интернет или открой файл через GitHub Pages/HTTP, а не как
-        <code>file://</code>.
+
+      <div class="top-tabs">
+        <button id="tabWorkout" class="top-tab-btn active">
+          <span>🧍‍♂️</span><span>Тренировка</span>
+        </button>
+        <button id="tabAchievements" class="top-tab-btn">
+          <span>🏅</span><span>Достижения</span>
+        </button>
+      </div>
+
+      <!-- Вкладка: Тренировка -->
+      <div id="viewWorkout">
+        <div class="mode-switch">
+          <button class="mode-btn active" data-program="light">
+            <span>🌱</span><span>Короткая</span>
+          </button>
+          <button class="mode-btn" data-program="standard">
+            <span>🌿</span><span>Стандарт</span>
+          </button>
+          <button class="mode-btn" data-program="deep">
+            <span>🌳</span><span>Глубокая</span>
+          </button>
+        </div>
+
+        <div class="status-row">
+          <div class="status-left">
+            <span class="status-dot"></span>
+            <span id="statusText">Комплекс не запущен</span>
+          </div>
+          <div class="status-right">
+            <span>🧍‍♂️</span><span id="exerciseCounter">Упражнение 1 из 3</span>
+          </div>
+        </div>
+
+        <div class="center">
+          <div class="avatar-shell">
+            <div id="avatar" class="avatar-inner avatar--neck avatar--view-front">
+              <div class="avatar-base">
+                <div class="back-line"></div>
+
+                <div class="avatar-body">
+                  <div class="avatar-neck"></div>
+                  <div class="avatar-head">
+                    <div class="avatar-face">
+                      <div class="eye eye-left"></div>
+                      <div class="eye eye-right"></div>
+                      <div class="mouth"></div>
+                    </div>
+                  </div>
+                  <div class="arm arm-left"></div>
+                  <div class="arm arm-right"></div>
+                </div>
+              </div>
+            </div>
+            <div class="avatar-shadow"></div>
+          </div>
+
+          <div class="timer-block">
+            <div id="timer" class="timer">00:30</div>
+            <div id="exerciseTitle" class="exercise-title">Мягкий наклон головы</div>
+            <div id="exerciseSub" class="exercise-sub">Сидя прямо, медленно наклоняй голову к плечу.</div>
+
+            <div class="progress-shell">
+              <div id="progressFill" class="progress-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button id="startPauseBtn" class="btn-main">
+            <span>▶</span><span>Старт</span>
+          </button>
+          <button id="skipBtn" class="btn-ghost">
+            <span>⏭</span><span>Дальше</span>
+          </button>
+          <button id="resetBtn" class="btn-ghost">
+            <span>↺</span><span>Сброс</span>
+          </button>
+        </div>
+
+        <div class="stats-row">
+          <div class="stats-left">
+            <span>📅</span>
+            <span id="statsToday">Сегодня: 0 комплексов · глаза: 0</span>
+          </div>
+          <div class="stats-right">
+            <div class="streak-badge">
+              <span class="streak-fire">🔥</span>
+              <span id="streakText">0 дн.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tip-block">
+          <div class="tip-icon">💡</div>
+          <div class="tip-text" id="tipText">
+            <strong>Совет:</strong> делай движения плавно, без боли и рывков.
+          </div>
+          <button id="tipNextBtn" class="tip-next">›</button>
+        </div>
+      </div>
+
+      <!-- Вкладка: Достижения -->
+      <div id="viewAchievements" class="hidden ach-view">
+        <div class="ach-summary">
+          <div class="ach-summary-main">
+            <div>
+              <div class="ach-summary-number" id="achTotalComplexes">0</div>
+              <div class="ach-summary-label">комплексов всего</div>
+            </div>
+            <div class="ach-summary-label" id="achTodayLine">Сегодня: 0</div>
+          </div>
+          <div class="ach-summary-sub">
+            <div>Лучший стрик: <span id="achBestStreak">0 дн.</span></div>
+            <div>Глаза сегодня: <span id="achEyesToday">0 упражнений</span></div>
+          </div>
+        </div>
+
+        <div class="ach-badges-grid">
+          <div class="ach-badge" id="achFirstComplex">
+            <div class="ach-badge-title">
+              <span class="ach-badge-icon">✨</span>
+              <span>Первый шаг</span>
+            </div>
+            <div class="ach-badge-desc">Сделай хотя бы 1 комплекс разминки.</div>
+          </div>
+          <div class="ach-badge" id="achThreeToday">
+            <div class="ach-badge-title">
+              <span class="ach-badge-icon">💪</span>
+              <span>Стабильный день</span>
+            </div>
+            <div class="ach-badge-desc">3 и более комплексa за один день.</div>
+          </div>
+          <div class="ach-badge" id="achEyesHero">
+            <div class="ach-badge-title">
+              <span class="ach-badge-icon">👀</span>
+              <span>Герой глаз</span>
+            </div>
+            <div class="ach-badge-desc">5 и более упражнений для глаз за день.</div>
+          </div>
+          <div class="ach-badge" id="achStreakSeven">
+            <div class="ach-badge-title">
+              <span class="ach-badge-icon">🔥</span>
+              <span>Неделя с METTA</span>
+            </div>
+            <div class="ach-badge-desc">Разминка 7 дней подряд или больше.</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="app">
-    <header>
-      <div class="brand">
-        <div class="logo">Py</div>
-        <div class="brand-title">
-          <h1>Python: игры, кино и код</h1>
-          <span>Интерактивный курс с нуля для разработчика</span>
-        </div>
+  <!-- Модалка завершения комплекса -->
+  <div id="doneModal" class="modal-backdrop hidden">
+    <div class="modal">
+      <div class="modal-title">Комплекс завершён</div>
+      <div class="modal-text" id="doneModalText">
+        Ты дал тело немного движения. Можно вернуться к работе или запустить ещё один круг позже.
       </div>
-      <div class="header-right">
-        <div class="pill">
-          <div class="pill-dot"></div>
-          <span>Python в браузере · Pyodide</span>
-        </div>
-        <div class="pill">
-          <span>🎮</span>
-          <span>Примеры из игр и кино</span>
-        </div>
+      <div class="modal-footer">
+        <button id="doneModalBtn" class="modal-btn">Хорошо</button>
       </div>
-    </header>
-
-    <main class="layout">
-      <aside class="sidebar">
-        <div class="sidebar-section-title">Прогресс</div>
-        <div class="progress-card">
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span>Этот курс — твой сюжетный квест</span>
-            <span style="font-size:12px;">🎯</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress-bar-fill" id="progress-bar-fill"></div>
-          </div>
-          <div class="progress-meta">
-            <span id="progress-count">0 / 0 задач</span>
-            <span id="progress-percent">0%</span>
-          </div>
-        </div>
-
-        <div class="sidebar-section-title">Уроки</div>
-        <div class="lessons-list" id="lessons-list"></div>
-      </aside>
-
-      <section class="content">
-        <div class="content-top">
-          <div class="card">
-            <div class="card-inner">
-              <div class="card-header">
-                <div class="card-title">
-                  <span id="lesson-title">Выбери урок слева</span>
-                  <span class="badge" id="lesson-badge">теория · практика</span>
-                </div>
-                <div class="mini-tags">
-                  <span>🎬 игры и кино</span>
-                  <span>🐍 Python</span>
-                  <span>🧠 навыки разработчика</span>
-                </div>
-              </div>
-              <div class="theory-text" id="lesson-theory">
-                <p>
-                  Этот курс строит Python как игру: переменные — это характеристики персонажа, функции — его умения,
-                  списки и словари — инвентарь и база NPC.
-                </p>
-                <p>
-                  Выбирай урок слева, читай теорию, а потом решай задачи внизу. Проверяй код на выводе, 
-                  прогоняй автотесты и отправляй задачи на зачёт.
-                </p>
-                <div class="theory-highlight">
-                  Вспомни, как в <strong>The Witcher</strong> или <strong>Mass Effect</strong> твой выбор влияет на
-                  сюжет. Здесь то же самое: твой код меняет поведение «мира». Мы будем смотреть на Python глазами
-                  гейм-дизайнера и сценариста фильмов.
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-inner">
-              <div class="card-header">
-                <div class="card-title">
-                  <span>Задачи урока</span>
-                  <span class="badge" id="lesson-tasks-badge">0 задач</span>
-                </div>
-                <div class="mini-tags">
-                  <span>автотесты</span>
-                  <span>повторение тем</span>
-                </div>
-              </div>
-              <div class="tasks-list" id="tasks-list">
-                <div style="font-size:12px;color:#9ca3af;">
-                  Сначала выбери урок слева. Здесь появятся задачи: каждая — маленький квест. 
-                  Решай их в редакторе кода внизу.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="content-bottom">
-          <div class="editor-toolbar">
-            <div class="editor-toolbar-left">
-              <div class="code-badge">
-                <span>🐍</span>
-                <span>Python 3 (Pyodide)</span>
-              </div>
-              <div id="current-task-label">Задача не выбрана</div>
-            </div>
-            <div class="editor-toolbar-right">
-              <div class="status-indicator" id="tests-status">
-                <div class="status-dot"></div>
-                <span>Тесты ещё не запускались</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="editor-card">
-            <div class="code-area">
-              <div class="code-header">
-                <span>Редактор кода</span>
-                <span style="font-size:11px;color:#9ca3af;">Tab = 4 пробела · Ctrl+Enter — запуск</span>
-              </div>
-              <textarea id="code-editor" spellcheck="false" placeholder="# Выбери задачу, чтобы увидеть стартовый код"></textarea>
-              <div class="buttons-row">
-                <div class="btn-group">
-                  <button id="run-code-btn" class="outline-soft" disabled>
-                    ▶ Запустить код
-                  </button>
-                  <button id="run-tests-btn" class="outline-soft" disabled>
-                    ✅ Проверить задание тестами
-                  </button>
-                </div>
-                <button id="submit-task-btn" class="primary" disabled>
-                  🏁 Отправить на зачёт
-                </button>
-              </div>
-            </div>
-
-            <div class="output-area">
-              <div class="output-header">
-                <span>Вывод / результаты тестов</span>
-                <button id="clear-output-btn" style="font-size:11px;padding:3px 9px;">
-                  Очистить
-                </button>
-              </div>
-              <pre id="output">Тут будет вывод твоей программы и результаты тестов.</pre>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div>
-        Курс задуман как личный тренажёр: можно возвращаться к задачам, как к любимым уровням в игре.
-      </div>
-      <div>
-        Прогресс сохраняется в браузере (localStorage) — зачёты не пропадут между сессиями.
-      </div>
-    </footer>
+    </div>
   </div>
 
-  <!-- Pyodide CDN (Python в браузере) -->
-  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js"></script>
+  <!-- Модалка описания упражнения (первое и последующие) -->
+  <div id="exerciseModal" class="modal-backdrop hidden">
+    <div class="modal">
+      <div class="modal-title" id="exerciseModalTitle">Упражнение</div>
+      <div class="modal-text" id="exerciseModalText">
+        Описание упражнения.
+      </div>
+      <div class="modal-footer">
+        <button id="exerciseModalBtn" class="modal-btn">Начать</button>
+      </div>
+    </div>
+  </div>
 
   <script>
-    // ==== ДАННЫЕ КУРСА ====
+    const POMODORO_URL = "https://nik1150615-bot.github.io/metta-pomodoro-game1/";
 
-    const COURSE = {
-      title: "Python: игры, кино и код",
-      lessons: [
+    // ---- ПРОГРАММЫ УПРАЖНЕНИЙ ----
+    // view: front / side (разный ракурс)
+
+    const PROGRAMS = {
+      light: [
         {
-          id: "lesson1",
-          title: "Урок 1. Переменные, типы и выражения",
-          estimated: "30–40 мин",
-          tags: ["основа", "переменные", "типы"],
-          theory: `
-<p><strong>Переменные как характеристики персонажа.</strong></p>
-<p>
-В игре у персонажа есть здоровье, мана, опыт, уровень. В фильме — возраст героя, бюджет фильма, рейтинг.
-В Python всё это — <strong>переменные</strong>.
-</p>
-<ul>
-  <li><code>int</code> — целые числа: здоровье, уровень, количество зёрен кофе;</li>
-  <li><code>float</code> — дробные числа: рейтинг фильма 8.7, шанс крит-удара 0.25;</li>
-  <li><code>str</code> — строки: реплики персонажей, названия квестов;</li>
-  <li><code>bool</code> — логические значения: жив ли персонаж, выполнен ли квест.</li>
-</ul>
-<p>
-Представь, что ты проектируешь HUD в игре: все цифры на экране — это значения переменных,
-в коде которых легко ошибиться, если не понимать типы.
-</p>
-<div class="theory-highlight">
-  <strong>Задачи урока:</strong> мы посчитаем урон по боссу, соберём строку диалога и 
-  вычислим рейтинг фильма по отзывам — всё через переменные и простые выражения.
-</div>
-`,
-          tasks: [
-            {
-              id: "lesson1_task1",
-              title: "Урон по боссу",
-              description:
-                "Считаем урон, который наносит персонаж боссу, как в RPG.",
-              difficulty: "легко",
-              recap: [],
-              starterCode: `def damage_after_armor(base_damage: int, armor: int) -> int:
-    \"\"\"Возвращает урон по боссу после брони.
-
-    base_damage — базовый урон персонажа
-    armor       — броня босса (целое число урона, который поглощается)
-
-    Урон не может быть отрицательным. Если броня больше базового урона, верни 0.
-
-    Примеры:
-    >>> damage_after_armor(100, 30)
-    70
-    >>> damage_after_armor(50, 80)
-    0
-    \"\"\"
-    # Напиши формулу: базовый урон минус броня, но минимум 0.
-    pass
-`,
-              tests: `
-def test_damage_after_armor():
-    assert damage_after_armor(100, 30) == 70
-    assert damage_after_armor(50, 80) == 0
-    assert damage_after_armor(0, 10) == 0
-    assert damage_after_armor(42, 0) == 42
-    print("Все тесты для damage_after_armor пройдены!")
-
-test_damage_after_armor()
-`,
-            },
-            {
-              id: "lesson1_task2",
-              title: "Реплика персонажа",
-              description:
-                "Собираем строку диалога, как в cut-scene игры или сцене фильма.",
-              difficulty: "легко",
-              recap: [],
-              starterCode: `def make_dialogue_line(character: str, phrase: str) -> str:
-    \"\"\"Возвращает строку диалога вида:
-
-    [Имя]: "фраза"
-
-    Пример:
-    >>> make_dialogue_line("Геральт", "Ведьмаков не существует.")
-    '[Геральт]: "Ведьмаков не существует."'
-    \"\"\"
-    # Используй f-строки или конкатенацию.
-    pass
-`,
-              tests: `
-def test_make_dialogue_line():
-    assert make_dialogue_line("Геральт", "Ведьмаков не существует.") == '[Геральт]: "Ведьмаков не существует."'
-    assert make_dialogue_line("Элли", "Я умею играть на гитаре.") == '[Элли]: "Я умею играть на гитаре."'
-    print("Все тесты для make_dialogue_line пройдены!")
-
-test_make_dialogue_line()
-`,
-            },
-            {
-              id: "lesson1_task3",
-              title: "Рейтинг фильма по отзывам",
-              description:
-                "Считаем среднюю оценку фильма по трём отзывам зрителей.",
-              difficulty: "средне",
-              recap: ["арифметика"],
-              starterCode: `def movie_rating(a: float, b: float, c: float) -> float:
-    \"\"\"Возвращает средний рейтинг фильма по трём оценкам зрителей.
-
-    Пример:
-    >>> movie_rating(8.0, 9.0, 7.0)
-    8.0
-    \"\"\"
-    # Найди среднее арифметическое трёх чисел.
-    pass
-`,
-              tests: `
-def almost_equal(a, b, eps=1e-6):
-    assert abs(a - b) < eps, f"Ожидали {b}, получили {a}"
-
-def test_movie_rating():
-    almost_equal(movie_rating(8.0, 9.0, 7.0), 8.0)
-    almost_equal(movie_rating(10.0, 10.0, 10.0), 10.0)
-    almost_equal(movie_rating(5.5, 6.5, 7.5), 6.5)
-    print("Все тесты для movie_rating пройдены!")
-
-test_movie_rating()
-`,
-            },
-          ],
+          name: "Мягкий наклон головы",
+          area: "Шея",
+          type: "neck",
+          view: "front",
+          duration: 30,
+          description: "Сидя прямо, медленно наклоняй голову к плечу, без рывков.",
         },
         {
-          id: "lesson2",
-          title: "Урок 2. Условия и циклы: логика квестов",
-          estimated: "35–45 мин",
-          tags: ["if", "циклы", "логика"],
-          theory: `
-<p><strong>Условия как развилки сюжета.</strong></p>
-<p>
-В играх и фильмах постоянно есть выбор: войти ли в запретный замок, сказать ли правду персонажу,
-открыть ли дверь. В коде это <strong>if / elif / else</strong>.
-</p>
-<p><strong>Циклы как фарм и повторы.</strong></p>
-<p>
-Фармить опыт в игре, крутить гачу, пересматривать любимую сцену — всё это повторение действий.
-В Python за это отвечают <strong>for</strong> и <strong>while</strong>.
-</p>
-<div class="theory-highlight">
-  В задачах мы проверим, пускает ли игра персонажа в подземелье, посчитаем добычу из списка лута 
-  и симулируем несколько ходов боя — как в пошаговой RPG.
-</div>
-`,
-          tasks: [
-            {
-              id: "lesson2_task1",
-              title: "Можно ли войти в подземелье?",
-              description:
-                "Проверяем, пускает ли игра персонажа в подземелье по уровню и ключу.",
-              difficulty: "легко",
-              recap: ["if"],
-              starterCode: `def can_enter_dungeon(level: int, has_key: bool) -> bool:
-    \"\"\"Возвращает True, если игрок может войти в подземелье.
-
-    Правила:
-      - уровень должен быть не меньше 10
-      - если уровень меньше 15, нужен ключ
-      - если уровень 15 и больше, ключ не нужен
-
-    Примеры:
-    >>> can_enter_dungeon(9, True)
-    False
-    >>> can_enter_dungeon(10, False)
-    False
-    >>> can_enter_dungeon(12, True)
-    True
-    >>> can_enter_dungeon(20, False)
-    True
-    \"\"\"
-    # Используй if/elif/else.
-    pass
-`,
-              tests: `
-def test_can_enter_dungeon():
-    assert can_enter_dungeon(9, False) is False
-    assert can_enter_dungeon(9, True) is False
-    assert can_enter_dungeon(10, False) is False
-    assert can_enter_dungeon(10, True) is True
-    assert can_enter_dungeon(14, True) is True
-    assert can_enter_dungeon(14, False) is False
-    assert can_enter_dungeon(15, False) is True
-    assert can_enter_dungeon(30, True) is True
-    print("Все тесты для can_enter_dungeon пройдены!")
-
-test_can_enter_dungeon()
-`,
-            },
-            {
-              id: "lesson2_task2",
-              title: "Считаем золото из списка лута",
-              description:
-                "Суммируем золото из списка предметов, как после рейда в подземелье.",
-              difficulty: "средне",
-              recap: ["for", "списки"],
-              starterCode: `def total_gold(loot: list[int]) -> int:
-    \"\"\"Возвращает общее количество золота из списка добычи.
-
-    Каждый элемент списка — количество золота в одном сундуке.
-
-    Пример:
-    >>> total_gold([10, 5, 0, 20])
-    35
-    \"\"\"
-    # Используй цикл for и сумму.
-    pass
-`,
-              tests: `
-def test_total_gold():
-    assert total_gold([]) == 0
-    assert total_gold([10]) == 10
-    assert total_gold([10, 5, 0, 20]) == 35
-    assert total_gold([100, -10, 5]) == 95  # вдруг штрафы :)
-    print("Все тесты для total_gold пройдены!")
-
-test_total_gold()
-`,
-            },
-            {
-              id: "lesson2_task3",
-              title: "Симуляция ходов боя",
-              description:
-                "Считаем, сколько ходов нужно, чтобы герой победил врага с заданным HP.",
-              difficulty: "средне",
-              recap: ["while", "арифметика"],
-              starterCode: `def turns_to_defeat(enemy_hp: int, damage_per_turn: int) -> int:
-    \"\"\"Считает, за сколько ходов герой победит врага.
-
-    enemy_hp        — здоровье врага
-    damage_per_turn — урон за ход (постоянный)
-
-    Если урон <= 0, верни большое число, например 10**9.
-
-    Пример:
-    >>> turns_to_defeat(100, 40)
-    3  # 40 + 40 + 40 >= 100
-    \"\"\"
-    # Используй цикл while и счётчик ходов.
-    pass
-`,
-              tests: `
-def test_turns_to_defeat():
-    assert turns_to_defeat(100, 40) == 3
-    assert turns_to_defeat(90, 30) == 3
-    assert turns_to_defeat(1, 1) == 1
-    assert turns_to_defeat(0, 10) == 0
-    assert turns_to_defeat(50, 0) == 10**9
-    assert turns_to_defeat(50, -5) == 10**9
-    print("Все тесты для turns_to_defeat пройдены!")
-
-test_turns_to_defeat()
-`,
-            },
-          ],
+          name: "Сведение лопаток",
+          area: "Верхняя спина",
+          type: "back",
+          view: "side",
+          duration: 30,
+          description: "Слегка своди лопатки к центру, грудь смотрит вперёд.",
         },
         {
-          id: "lesson3",
-          title: "Урок 3. Функции, списки и словари: инвентарь и NPC",
-          estimated: "40–50 мин",
-          tags: ["функции", "списки", "словари"],
-          theory: `
-<p><strong>Функции как способности героя.</strong></p>
-<p>
-В играх у персонажа есть скиллы: лечить, бить, бафать. В коде — функции: маленькие 
-повторно используемые куски логики.
-</p>
-<p><strong>Списки и словари как инвентарь и база NPC.</strong></p>
-<ul>
-  <li>Список — упорядоченный набор: предметы в инвентаре, кадры сцены;</li>
-  <li>Словарь — ключ-значение: имя NPC → уровень доверия, id предмета → его описание.</li>
-</ul>
-<p>
-Вспомни, как в RPG у тебя меню с инвентарём и отдельная вкладка с персонажами. 
-Мы сделаем что-то похожее, только в Python.
-</p>
-<div class="theory-highlight">
-  В задачах мы будем работать с инвентарём, списком фильмов и базой сохранений игр.
-  Параллельно закрепим функции и передачу аргументов.
-</div>
-`,
-          tasks: [
-            {
-              id: "lesson3_task1",
-              title: "Добавление предмета в инвентарь",
-              description:
-                "Работаем со списком предметов как с инвентарём персонажа.",
-              difficulty: "легко",
-              recap: ["списки", "функции"],
-              starterCode: `def add_item(inventory: list[str], item: str) -> list[str]:
-    \"\"\"Возвращает новый список инвентаря с добавленным предметом.
-
-    Важно: не изменяй исходный список, создай копию.
-
-    Пример:
-    >>> inv = ["меч", "щит"]
-    >>> new_inv = add_item(inv, "зелье")
-    >>> new_inv
-    ['меч', 'щит', 'зелье']
-    >>> inv
-    ['меч', 'щит']
-    \"\"\"
-    # Создай копию списка и верни новую версию.
-    pass
-`,
-              tests: `
-def test_add_item():
-    inv = ["меч", "щит"]
-    new_inv = add_item(inv, "зелье")
-    assert new_inv == ["меч", "щит", "зелье"]
-    assert inv == ["меч", "щит"], "Исходный список не должен меняться"
-    inv2 = []
-    assert add_item(inv2, "лук") == ["лук"]
-    print("Все тесты для add_item пройдены!")
-
-test_add_item()
-`,
-            },
-            {
-              id: "lesson3_task2",
-              title: "Фильтрация фильмов по рейтингу",
-              description:
-                "Отбираем фильмы с высоким рейтингом, как в рекомендациях стриминга.",
-              difficulty: "средне",
-              recap: ["списки", "условия"],
-              starterCode: `def filter_movies(movies: list[tuple[str, float]], min_rating: float) -> list[str]:
-    \"\"\"Фильтрует фильмы по минимальному рейтингу.
-
-    movies — список кортежей (название, рейтинг)
-    Верни список названий фильмов с рейтингом >= min_rating.
-
-    Пример:
-    >>> filter_movies([("Inception", 8.8), ("Movie", 6.0)], 8.0)
-    ['Inception']
-    \"\"\"
-    # Используй цикл, if и список-результат.
-    pass
-`,
-              tests: `
-def test_filter_movies():
-    movies = [("Inception", 8.8), ("The Room", 3.7), ("Interstellar", 8.6)]
-    assert filter_movies(movies, 8.0) == ["Inception", "Interstellar"]
-    assert filter_movies(movies, 9.0) == []
-    assert filter_movies([], 5.0) == []
-    print("Все тесты для filter_movies пройдены!")
-
-test_filter_movies()
-`,
-            },
-            {
-              id: "lesson3_task3",
-              title: "База сохранений игр",
-              description:
-                "Храним и обновляем информацию о сохранениях в словаре.",
-              difficulty: "средне+",
-              recap: ["dict", "функции"],
-              starterCode: `def update_save(saves: dict, slot: int, level: int, location: str) -> dict:
-    \"\"\"Обновляет словарь сохранений и возвращает новый.
-
-    saves — словарь формата:
-      slot -> {"level": int, "location": str}
-
-    Если слота ещё нет — создаём его.
-    Не изменяй исходный словарь, верни копию.
-
-    Пример:
-    >>> s = {}
-    >>> new_s = update_save(s, 1, 10, "Начальная локация")
-    >>> new_s[1]["level"]
-    10
-    \"\"\"
-    # Создай копию словаря и обнови данные по слоту.
-    pass
-`,
-              tests: `
-def test_update_save():
-    s = {}
-    s1 = update_save(s, 1, 10, "Village")
-    assert s == {}, "Исходный словарь не должен меняться"
-    assert 1 in s1 and s1[1]["level"] == 10 and s1[1]["location"] == "Village"
-
-    s2 = update_save(s1, 1, 20, "Castle")
-    assert s2[1]["level"] == 20
-    assert s1[1]["level"] == 10, "Старый словарь должен остаться прежним"
-
-    s3 = update_save(s2, 2, 5, "Forest")
-    assert set(s3.keys()) == {1, 2}
-    print("Все тесты для update_save пройдены!")
-
-test_update_save()
-`,
-            },
-          ],
+          name: "Перевод взгляда вдаль",
+          area: "Глаза",
+          type: "eyes",
+          view: "front",
+          duration: 30,
+          description: "5 секунд смотри на экран, 5 — в самую дальнюю точку в комнате.",
+        },
+      ],
+      standard: [
+        {
+          name: "Круговые движения плечами",
+          area: "Плечи",
+          type: "shoulders",
+          view: "front",
+          duration: 30,
+          description: "Опускай плечи вниз на каждый круг, не зажимай шею.",
         },
         {
-          id: "lesson4",
-          title: "Урок 4. Повторение: смешиваем темы",
-          estimated: "45–60 мин",
-          tags: ["повторение", "микс тем"],
-          theory: `
-<p><strong>Повторение как New Game+.</strong></p>
-<p>
-В хорошем сериале или игре ты возвращаешься к уже знакомым персонажам и сюжетным линиям,
-но на новом уровне. Здесь так же: мы смешиваем переменные, условия, циклы, списки и словари.
-</p>
-<div class="theory-highlight">
-  В задачах этого урока придётся использовать сразу несколько идей:
-  считать баланс ресурсов, формировать отчёт по фильму и анализировать инвентарь героя.
-</div>
-`,
-          tasks: [
-            {
-              id: "lesson4_task1",
-              title: "Баланс ресурсов после квеста",
-              description:
-                "Считаем итоговый баланс золота и опыта после цепочки событий.",
-              difficulty: "средне+",
-              recap: ["переменные", "циклы", "if"],
-              starterCode: `def quest_result(events: list[tuple[str, int]]) -> dict:
-    \"\"\"Считает итоговый баланс ресурсов после списка событий.
-
-    events — список кортежей (тип, значение), где тип может быть:
-      "gold"  — изменение золота
-      "xp"    — изменение опыта
-      "death" — смерть персонажа (обнуляем золото и опыт)
-
-    Верни словарь вида {"gold": ..., "xp": ...}.
-
-    Пример:
-    >>> quest_result([("gold", 10), ("xp", 50)])
-    {'gold': 10, 'xp': 50}
-    >>> quest_result([("gold", 10), ("death", 0), ("xp", 100)])
-    {'gold': 0, 'xp': 0}
-    \"\"\"
-    # Используй переменные gold и xp и перебор списка событий.
-    pass
-`,
-              tests: `
-def test_quest_result():
-    res1 = quest_result([("gold", 10), ("xp", 50)])
-    assert res1 == {"gold": 10, "xp": 50}
-
-    res2 = quest_result([("gold", 10), ("death", 0), ("xp", 100)])
-    assert res2 == {"gold": 0, "xp": 0}
-
-    res3 = quest_result([("xp", 10), ("xp", 20), ("gold", 5)])
-    assert res3 == {"gold": 5, "xp": 30}
-
-    res4 = quest_result([("gold", 100), ("death", 0), ("gold", 5), ("xp", 10)])
-    assert res4 == {"gold": 5, "xp": 10}
-    print("Все тесты для quest_result пройдены!")
-
-test_quest_result()
-`,
-            },
-            {
-              id: "lesson4_task2",
-              title: "Отчёт по фильму",
-              description:
-                "Строим словарь с кратким отчётом по фильму по входным данным.",
-              difficulty: "средне",
-              recap: ["типизация", "dict", "арифметика"],
-              starterCode: `def movie_report(title: str, year: int, ratings: list[float]) -> dict:
-    \"\"\"Возвращает отчёт по фильму в виде словаря.
-
-    В отчёте должны быть ключи:
-      "title"   — название
-      "year"    — год
-      "votes"   — количество оценок
-      "avg"     — средний рейтинг (0, если голосов нет)
-
-    Пример:
-    >>> movie_report("Inception", 2010, [8.5, 9.0])
-    {'title': 'Inception', 'year': 2010, 'votes': 2, 'avg': 8.75}
-    \"\"\"
-    # Используй len, сумму и деление, не забывай про случай без голосов.
-    pass
-`,
-              tests: `
-def almost_equal(a, b, eps=1e-6):
-    assert abs(a - b) < eps, f"Ожидали {b}, получили {a}"
-
-def test_movie_report():
-    r = movie_report("Inception", 2010, [8.5, 9.0])
-    assert r["title"] == "Inception"
-    assert r["year"] == 2010
-    assert r["votes"] == 2
-    almost_equal(r["avg"], 8.75)
-
-    r2 = movie_report("NoVotes", 2020, [])
-    assert r2["votes"] == 0
-    almost_equal(r2["avg"], 0.0)
-    print("Все тесты для movie_report пройдены!")
-
-test_movie_report()
-`,
-            },
-            {
-              id: "lesson4_task3",
-              title: "Проверка веса инвентаря",
-              description:
-                "Проверяем, не перегружен ли герой предметами (как в Skyrim).",
-              difficulty: "средне+",
-              recap: ["dict", "циклы", "условия"],
-              starterCode: `def is_overloaded(items: dict, max_weight: float) -> bool:
-    \"\"\"Проверяет, перегружен ли герой по весу инвентаря.
-
-    items — словарь формата:
-      название -> вес_предмета (float)
-
-    max_weight — максимально допустимый общий вес.
-
-    Верни True, если суммарный вес строго больше max_weight, иначе False.
-    \"\"\"
-    # Просуммируй веса и сравни с max_weight.
-    pass
-`,
-              tests: `
-def test_is_overloaded():
-    assert is_overloaded({}, 10.0) is False
-    assert is_overloaded({"меч": 3.0, "щит": 5.0}, 10.0) is False
-    assert is_overloaded({"меч": 3.0, "щит": 5.0, "руда": 3.0}, 10.0) is True
-    assert is_overloaded({"камень": 10.0}, 10.0) is False
-    print("Все тесты для is_overloaded пройдены!")
-
-test_is_overloaded()
-`,
-            },
-          ],
+          name: "Наклоны головы в стороны",
+          area: "Шея",
+          type: "neck",
+          view: "front",
+          duration: 30,
+          description: "Тянись ухом к плечу, плечи оставь расслабленными.",
+        },
+        {
+          name: "Скрутка сидя",
+          area: "Поясница",
+          type: "back",
+          view: "side",
+          duration: 40,
+          description: "Сидя прямо, мягко поворачивай корпус вправо и влево.",
+        },
+        {
+          name: "Растяжка грудных мышц",
+          area: "Грудной отдел",
+          type: "back",
+          view: "side",
+          duration: 30,
+          description: "Сведи лопатки, слегка отведя руки назад.",
+        },
+        {
+          name: "Перевод взгляда: близко–далеко",
+          area: "Глаза",
+          type: "eyes",
+          view: "front",
+          duration: 30,
+          description: "5 секунд на близком объекте, 5 секунд — вдаль.",
+        },
+      ],
+      deep: [
+        {
+          name: "Круговые движения плечами",
+          area: "Плечи",
+          type: "shoulders",
+          view: "front",
+          duration: 30,
+          description: "Двигай плечами вперёд и назад в комфортной амплитуде.",
+        },
+        {
+          name: "Наклоны головы во все стороны",
+          area: "Шея",
+          type: "neck",
+          view: "front",
+          duration: 40,
+          description: "Наклоняй голову вперёд, назад и к плечам, без боли.",
+        },
+        {
+          name: "Скрутка сидя",
+          area: "Поясница",
+          type: "back",
+          view: "side",
+          duration: 40,
+          description: "Мягко скручивай корпус, оставаясь на седалищных костях.",
+        },
+        {
+          name: "Наклон вперёд с опорой",
+          area: "Поясница",
+          type: "back",
+          view: "side",
+          duration: 40,
+          description: "Опирайся руками на бёдра, оставляя спину максимально прямой.",
+        },
+        {
+          name: "Растяжка грудных мышц",
+          area: "Грудной отдел",
+          type: "back",
+          view: "side",
+          duration: 30,
+          description: "Открой грудную клетку, будто чуть раздвигаешь плечи назад.",
+        },
+        {
+          name: "Перевод взгляда по сторонам",
+          area: "Глаза",
+          type: "eyes",
+          view: "front",
+          duration: 30,
+          description: "Смотри по очереди вверх, вниз, вправо и влево.",
+        },
+        {
+          name: "Глубокое дыхание",
+          area: "Дыхание",
+          type: "breath",
+          view: "front",
+          duration: 40,
+          description: "Медленный вдох через нос, выдох через рот подольше, чем вдох.",
         },
       ],
     };
 
-    // ==== ПРОГРЕСС (localStorage) ====
+    const TIPS = [
+      "Делай движения плавно и в своей комфортной амплитуде.",
+      "Лучше 2–3 минуты разминки несколько раз в день, чем один большой подход раз в неделю.",
+      "Если чувствуешь боль — уменьшай амплитуду или сделай паузу.",
+      "Дыши спокойно и не задерживай дыхание во время растяжки.",
+      "Старайся, чтобы стопы стояли на полу, а спина опиралась на спинку кресла.",
+      "Привяжи разминку к созвонам: закончил митинг — сделал 1 комплекс.",
+    ];
 
-    const STORAGE_KEY = "python_game_course_progress_v1";
+    // ---- СОСТОЯНИЕ ----
 
-    function loadProgress() {
+    let currentProgramKey = "light";
+    let currentExercises = PROGRAMS[currentProgramKey];
+    let currentIndex = 0;
+
+    let remainingSeconds = currentExercises[0].duration;
+    let totalComplexSeconds = currentExercises.reduce((s, e) => s + e.duration, 0);
+    let elapsedComplexSeconds = 0;
+
+    let isRunning = false;
+    let timerId = null;
+    let hasStartedComplex = false;
+
+    let complexesToday = 0;
+    let eyesToday = 0;
+    let streakDays = 0;
+    let totalComplexes = 0;
+    let bestStreak = 0;
+    let tipIndex = 0;
+
+    // Модалка упражнений
+    let exerciseModalMode = null; // "start" | "switch"
+    let exerciseModalNextIndex = 0;
+
+    // ---- DOM ----
+
+    const screenHub = document.getElementById("screenHub");
+    const screenStretch = document.getElementById("screenStretch");
+    const hubPomodoro = document.getElementById("hubPomodoro");
+    const hubStretch = document.getElementById("hubStretch");
+    const backToHubBtn = document.getElementById("backToHubBtn");
+
+    const modeButtons = document.querySelectorAll(".mode-btn");
+    const statusTextEl = document.getElementById("statusText");
+    const exerciseCounterEl = document.getElementById("exerciseCounter");
+    const avatarEl = document.getElementById("avatar");
+    const timerEl = document.getElementById("timer");
+    const exerciseTitleEl = document.getElementById("exerciseTitle");
+    const exerciseSubEl = document.getElementById("exerciseSub");
+    const progressFillEl = document.getElementById("progressFill");
+
+    const startPauseBtn = document.getElementById("startPauseBtn");
+    const skipBtn = document.getElementById("skipBtn");
+    const resetBtn = document.getElementById("resetBtn");
+
+    const statsTodayEl = document.getElementById("statsToday");
+    const streakTextEl = document.getElementById("streakText");
+    const tipTextEl = document.getElementById("tipText");
+
+    const tipNextBtn = document.getElementById("tipNextBtn");
+
+    const doneModal = document.getElementById("doneModal");
+    const doneModalBtn = document.getElementById("doneModalBtn");
+    const doneModalTextEl = document.getElementById("doneModalText");
+
+    const exerciseModal = document.getElementById("exerciseModal");
+    const exerciseModalTitle = document.getElementById("exerciseModalTitle");
+    const exerciseModalText = document.getElementById("exerciseModalText");
+    const exerciseModalBtn = document.getElementById("exerciseModalBtn");
+
+    const tabWorkout = document.getElementById("tabWorkout");
+    const tabAchievements = document.getElementById("tabAchievements");
+    const viewWorkout = document.getElementById("viewWorkout");
+    const viewAchievements = document.getElementById("viewAchievements");
+
+    // Achievements DOM
+    const achTotalComplexesEl = document.getElementById("achTotalComplexes");
+    const achTodayLineEl = document.getElementById("achTodayLine");
+    const achBestStreakEl = document.getElementById("achBestStreak");
+    const achEyesTodayEl = document.getElementById("achEyesToday");
+
+    const achFirstComplexEl = document.getElementById("achFirstComplex");
+    const achThreeTodayEl = document.getElementById("achThreeToday");
+    const achEyesHeroEl = document.getElementById("achEyesHero");
+    const achStreakSevenEl = document.getElementById("achStreakSeven");
+
+    // ---- ХРАНЕНИЕ ----
+
+    const STORAGE_KEYS = {
+      COMPLEX_DATE: "metta_stretch_complex_date",
+      COMPLEX_VAL: "metta_stretch_complex_value",
+      EYES_DATE: "metta_stretch_eyes_date",
+      EYES_VAL: "metta_stretch_eyes_value",
+      STREAK_DATE: "metta_stretch_streak_date",
+      STREAK_VAL: "metta_stretch_streak_value",
+      TOTAL_COMPLEX_VAL: "metta_stretch_total_complex",
+      BEST_STREAK_VAL: "metta_stretch_best_streak",
+    };
+
+    function getDateKey(d = new Date()) {
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      return `${y}-${m}-${day}`;
+    }
+
+    function pluralRu(n, forms) {
+      const nAbs = Math.abs(n) % 100;
+      const n1 = nAbs % 10;
+      if (nAbs > 10 && nAbs < 20) return forms[2];
+      if (n1 > 1 && n1 < 5) return forms[1];
+      if (n1 === 1) return forms[0];
+      return forms[2];
+    }
+
+    function loadTodayCounters() {
+      const today = getDateKey();
+
       try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) return { tasks: {} };
-        return JSON.parse(raw);
-      } catch (e) {
-        return { tasks: {} };
-      }
-    }
-
-    function saveProgress(progress) {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-      } catch (e) {
-        console.warn("Не удалось сохранить прогресс:", e);
-      }
-    }
-
-    let progress = loadProgress();
-
-    function getAllTasks() {
-      const tasks = [];
-      COURSE.lessons.forEach((lesson) => {
-        lesson.tasks.forEach((task) => {
-          tasks.push({ lesson, task });
-        });
-      });
-      return tasks;
-    }
-
-    function updateGlobalProgressUI() {
-      const tasks = getAllTasks();
-      const total = tasks.length;
-      const solved = tasks.reduce((acc, { task }) => {
-        const info = progress.tasks[task.id];
-        return acc + (info && info.solved ? 1 : 0);
-      }, 0);
-
-      const percent = total > 0 ? Math.round((solved / total) * 100) : 0;
-
-      const bar = document.getElementById("progress-bar-fill");
-      const count = document.getElementById("progress-count");
-      const percentEl = document.getElementById("progress-percent");
-
-      bar.style.width = percent + "%";
-      count.textContent = `${solved} / ${total} задач`;
-      percentEl.textContent = `${percent}%`;
-    }
-
-    // ==== РЕНДЕР УРОКОВ И ЗАДАЧ ====
-
-    let currentLessonId = null;
-    let currentTaskId = null;
-    let lastTestsPassed = false;
-
-    function renderLessonsList() {
-      const container = document.getElementById("lessons-list");
-      container.innerHTML = "";
-
-      COURSE.lessons.forEach((lesson, index) => {
-        const lessonSolvedCount = lesson.tasks.filter((t) => {
-          const info = progress.tasks[t.id];
-          return info && info.solved;
-        }).length;
-
-        const lessonTotal = lesson.tasks.length;
-        const allSolved = lessonSolvedCount === lessonTotal && lessonTotal > 0;
-
-        const item = document.createElement("div");
-        item.className = "lesson-item";
-        item.dataset.lessonId = lesson.id;
-
-        const left = document.createElement("div");
-        left.className = "lesson-left";
-
-        const title = document.createElement("div");
-        title.className = "lesson-title";
-        title.textContent = `${index + 1}. ${lesson.title}`;
-
-        const desc = document.createElement("div");
-        desc.className = "lesson-desc";
-        desc.textContent = lesson.estimated;
-
-        const meta = document.createElement("div");
-        meta.className = "lesson-meta";
-        const pill = document.createElement("span");
-        pill.className = "pill-small";
-        pill.textContent = lesson.tags.join(" · ");
-        meta.appendChild(pill);
-
-        const progressText = document.createElement("span");
-        progressText.textContent = `${lessonSolvedCount}/${lessonTotal}`;
-        meta.appendChild(progressText);
-
-        left.appendChild(title);
-        left.appendChild(desc);
-        left.appendChild(meta);
-
-        const right = document.createElement("div");
-        right.className = "lesson-status-icon";
-        right.textContent = allSolved ? "⭐" : "🎬";
-
-        item.appendChild(left);
-        item.appendChild(right);
-
-        item.addEventListener("click", () => selectLesson(lesson.id));
-
-        container.appendChild(item);
-      });
-
-      highlightCurrentLesson();
-    }
-
-    function highlightCurrentLesson() {
-      document.querySelectorAll(".lesson-item").forEach((el) => {
-        if (el.dataset.lessonId === currentLessonId) {
-          el.classList.add("active");
-        } else {
-          el.classList.remove("active");
-        }
-      });
-    }
-
-    function selectLesson(lessonId) {
-      currentLessonId = lessonId;
-      highlightCurrentLesson();
-
-      const lesson = COURSE.lessons.find((l) => l.id === lessonId);
-      if (!lesson) return;
-
-      // Теория
-      document.getElementById("lesson-title").textContent = lesson.title;
-      document.getElementById("lesson-theory").innerHTML = lesson.theory;
-      document.getElementById(
-        "lesson-badge"
-      ).textContent = `теория · ${lesson.tasks.length} задач`;
-
-      // Список задач
-      const tasksContainer = document.getElementById("tasks-list");
-      tasksContainer.innerHTML = "";
-      lesson.tasks.forEach((task, idx) => {
-        const item = document.createElement("div");
-        item.className = "task-item";
-        item.dataset.taskId = task.id;
-
-        const left = document.createElement("div");
-        left.className = "task-left";
-
-        const title = document.createElement("div");
-        title.className = "task-title";
-        title.textContent = `${idx + 1}. ${task.title}`;
-
-        const desc = document.createElement("div");
-        desc.className = "task-desc";
-        desc.textContent = task.description;
-
-        const meta = document.createElement("div");
-        meta.className = "task-meta";
-        const difficulty = document.createElement("span");
-        difficulty.textContent = task.difficulty;
-        const recap =
-          task.recap && task.recap.length
-            ? document.createElement("span")
-            : null;
-        if (recap) {
-          recap.textContent = `повтор: ${task.recap.join(", ")}`;
-        }
-
-        meta.appendChild(difficulty);
-        if (recap) meta.appendChild(recap);
-
-        left.appendChild(title);
-        left.appendChild(desc);
-        left.appendChild(meta);
-
-        const right = document.createElement("div");
-        right.style.fontSize = "16px";
-        const info = progress.tasks[task.id];
-        right.textContent = info && info.solved ? "✅" : "⏳";
-
-        item.appendChild(left);
-        item.appendChild(right);
-
-        item.addEventListener("click", () => selectTask(task.id));
-
-        tasksContainer.appendChild(item);
-      });
-
-      document.getElementById(
-        "lesson-tasks-badge"
-      ).textContent = `${lesson.tasks.length} задач`;
-      // Автовыбор первой задачи урока
-      if (lesson.tasks[0]) {
-        selectTask(lesson.tasks[0].id);
-      } else {
-        selectTask(null);
-      }
-    }
-
-    function highlightCurrentTask() {
-      document.querySelectorAll(".task-item").forEach((el) => {
-        if (el.dataset.taskId === currentTaskId) {
-          el.classList.add("active");
-        } else {
-          el.classList.remove("active");
-        }
-      });
-    }
-
-    function selectTask(taskId) {
-      currentTaskId = taskId;
-      lastTestsPassed = false;
-      updateTestsStatus("neutral", "Тесты ещё не запускались");
-      highlightCurrentTask();
-
-      const editor = document.getElementById("code-editor");
-      const runBtn = document.getElementById("run-code-btn");
-      const testsBtn = document.getElementById("run-tests-btn");
-      const submitBtn = document.getElementById("submit-task-btn");
-
-      if (!taskId) {
-        editor.value = "";
-        editor.placeholder = "# Выбери задачу, чтобы увидеть стартовый код";
-        runBtn.disabled = true;
-        testsBtn.disabled = true;
-        submitBtn.disabled = true;
-        document.getElementById("current-task-label").textContent =
-          "Задача не выбрана";
-        return;
-      }
-
-      const lesson = COURSE.lessons.find((l) => l.id === currentLessonId);
-      if (!lesson) return;
-      const task = lesson.tasks.find((t) => t.id === taskId);
-      if (!task) return;
-
-      document.getElementById("current-task-label").textContent = task.title;
-
-      const info = progress.tasks[task.id];
-      if (info && info.code) {
-        editor.value = info.code;
-      } else {
-        editor.value = task.starterCode;
-      }
-
-      runBtn.disabled = false;
-      testsBtn.disabled = false;
-      submitBtn.disabled = !(info && info.solved);
-
-      if (info && info.solved) {
-        updateTestsStatus("ok", "Ранее зачтено ✅");
-      }
-
-      document.getElementById("output").textContent =
-        "Тут будет вывод твоей программы и результаты тестов.";
-    }
-
-    function updateTestsStatus(status, text) {
-      const container = document.getElementById("tests-status");
-      const dot = container.querySelector(".status-dot");
-      const label = container.querySelector("span:last-child");
-
-      dot.classList.remove("ok", "bad");
-      if (status === "ok") dot.classList.add("ok");
-      if (status === "bad") dot.classList.add("bad");
-      label.textContent = text;
-    }
-
-    // ==== PYODIDE (Python в браузере) ====
-
-    let pyodide = null;
-    let pyodideReady = false;
-
-    async function initPyodide() {
-      try {
-        pyodide = await loadPyodide({
-          indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.2/full/",
-        });
-        await pyodide.runPythonAsync("import sys, io");
-        pyodideReady = true;
-      } catch (e) {
-        console.error("Ошибка загрузки Pyodide:", e);
-        alert(
-          "Не удалось загрузить Pyodide (Python в браузере). Проверь интернет или открой страницу через GitHub Pages/HTTP."
+        const lastComplexDate = localStorage.getItem(STORAGE_KEYS.COMPLEX_DATE);
+        const lastComplexVal = parseInt(
+          localStorage.getItem(STORAGE_KEYS.COMPLEX_VAL) || "0",
+          10
         );
-      } finally {
-        document.getElementById("loader").classList.remove("active");
-      }
-    }
 
-    async function runUserCode(code) {
-      if (!pyodideReady) {
-        return { ok: false, output: "Pyodide ещё не загрузился." };
+        if (lastComplexDate === today && lastComplexVal > 0) {
+          complexesToday = lastComplexVal;
+        } else {
+          complexesToday = 0;
+          localStorage.setItem(STORAGE_KEYS.COMPLEX_DATE, today);
+          localStorage.setItem(STORAGE_KEYS.COMPLEX_VAL, "0");
+        }
+      } catch (e) {
+        complexesToday = 0;
       }
+
       try {
-        await pyodide.runPythonAsync(`
-import sys, io
-sys.stdout = io.StringIO()
-`);
-        await pyodide.runPythonAsync(code);
-        const output = pyodide.runPython("sys.stdout.getvalue()");
-        return { ok: true, output };
-      } catch (err) {
-        let output = "";
-        try {
-          output = pyodide.runPython("sys.stdout.getvalue()");
-        } catch (_) {}
-        return {
-          ok: false,
-          output:
-            (output || "") +
-            "\\n\\nОшибка Python: " +
-            (err && err.message ? err.message : String(err)),
-        };
-      }
-    }
-
-    async function runTestsForTask(task, code) {
-      if (!pyodideReady) {
-        return { passed: false, output: "Pyodide ещё не загрузился." };
-      }
-      try {
-        await pyodide.runPythonAsync(`
-import sys, io
-sys.stdout = io.StringIO()
-`);
-        // Сначала выполняем пользовательский код
-        await pyodide.runPythonAsync(code);
-        // Затем — тесты
-        await pyodide.runPythonAsync(task.tests);
-        const output = pyodide.runPython("sys.stdout.getvalue()");
-        return { passed: true, output };
-      } catch (err) {
-        let output = "";
-        try {
-          output = pyodide.runPython("sys.stdout.getvalue()");
-        } catch (_) {}
-        return {
-          passed: false,
-          output:
-            (output || "") +
-            "\\n\\nОшибка тестов: " +
-            (err && err.message ? err.message : String(err)),
-        };
-      }
-    }
-
-    // ==== ОБРАБОТЧИКИ КНОПОК ====
-
-    function setupButtons() {
-      const runBtn = document.getElementById("run-code-btn");
-      const testsBtn = document.getElementById("run-tests-btn");
-      const submitBtn = document.getElementById("submit-task-btn");
-      const clearOutBtn = document.getElementById("clear-output-btn");
-      const editor = document.getElementById("code-editor");
-      const outputEl = document.getElementById("output");
-
-      runBtn.addEventListener("click", async () => {
-        if (!currentTaskId) return;
-        const code = editor.value;
-        outputEl.textContent = "Запуск кода...";
-        const res = await runUserCode(code);
-        outputEl.textContent = res.output || "(нет вывода)";
-        updateTestsStatus(
-          res.ok ? "neutral" : "bad",
-          res.ok ? "Код выполнен" : "Ошибка при выполнении"
+        const lastEyesDate = localStorage.getItem(STORAGE_KEYS.EYES_DATE);
+        const lastEyesVal = parseInt(
+          localStorage.getItem(STORAGE_KEYS.EYES_VAL) || "0",
+          10
         );
-      });
 
-      testsBtn.addEventListener("click", async () => {
-        if (!currentTaskId || !currentLessonId) return;
-        const lesson = COURSE.lessons.find((l) => l.id === currentLessonId);
-        if (!lesson) return;
-        const task = lesson.tasks.find((t) => t.id === currentTaskId);
-        if (!task) return;
+        if (lastEyesDate === today && lastEyesVal > 0) {
+          eyesToday = lastEyesVal;
+        } else {
+          eyesToday = 0;
+          localStorage.setItem(STORAGE_KEYS.EYES_DATE, today);
+          localStorage.setItem(STORAGE_KEYS.EYES_VAL, "0");
+        }
+      } catch (e) {
+        eyesToday = 0;
+      }
 
-        const code = editor.value;
-        outputEl.textContent = "Запускаем тесты...";
-        const res = await runTestsForTask(task, code);
-        outputEl.textContent = res.output || "(нет вывода)";
+      try {
+        const totalVal = parseInt(
+          localStorage.getItem(STORAGE_KEYS.TOTAL_COMPLEX_VAL) || "0",
+          10
+        );
+        totalComplexes = isFinite(totalVal) && totalVal >= 0 ? totalVal : 0;
+      } catch (e) {
+        totalComplexes = 0;
+      }
 
-        if (res.passed) {
-          lastTestsPassed = true;
-          updateTestsStatus("ok", "Все тесты пройдены ✅");
-          // Сохраняем код в прогрессе
-          if (!progress.tasks[currentTaskId]) {
-            progress.tasks[currentTaskId] = { solved: false, code: "" };
+      try {
+        const bestVal = parseInt(
+          localStorage.getItem(STORAGE_KEYS.BEST_STREAK_VAL) || "0",
+          10
+        );
+        bestStreak = isFinite(bestVal) && bestVal >= 0 ? bestVal : 0;
+      } catch (e) {
+        bestStreak = 0;
+      }
+
+      try {
+        const streakDate = localStorage.getItem(STORAGE_KEYS.STREAK_DATE);
+        const streakVal = parseInt(
+          localStorage.getItem(STORAGE_KEYS.STREAK_VAL) || "0",
+          10
+        );
+        const todayStr = today;
+
+        if (!streakDate) {
+          streakDays = complexesToday > 0 ? 1 : 0;
+          localStorage.setItem(STORAGE_KEYS.STREAK_DATE, todayStr);
+          localStorage.setItem(STORAGE_KEYS.STREAK_VAL, String(streakDays));
+        } else {
+          const [sy, sm, sd] = streakDate.split("-").map(Number);
+          const [ty, tm, td] = todayStr.split("-").map(Number);
+
+          const prev = new Date(sy, sm - 1, sd);
+          const now = new Date(ty, tm - 1, td);
+          const diffDays = Math.round(
+            (now - prev) / (1000 * 60 * 60 * 24)
+          );
+
+          if (diffDays === 0) {
+            streakDays = streakVal;
+            if (complexesToday > 0 && streakDays === 0) {
+              streakDays = 1;
+            }
+          } else if (diffDays === 1) {
+            streakDays = complexesToday > 0 ? streakVal + 1 : streakVal;
+          } else {
+            streakDays = complexesToday > 0 ? 1 : 0;
           }
-          progress.tasks[currentTaskId].code = code;
-          saveProgress(progress);
-          // Разрешаем отправку на зачёт
-          submitBtn.disabled = false;
-        } else {
-          lastTestsPassed = false;
-          updateTestsStatus(
-            "bad",
-            "Тесты не пройдены. Смотри вывод справа."
-          );
-        }
-      });
 
-      submitBtn.addEventListener("click", () => {
-        if (!currentTaskId || !lastTestsPassed) {
-          alert(
-            "Сначала пройди все тесты для задачи. После успешного запуска тестов кнопка становится осмысленной 🙂"
-          );
-          return;
+          localStorage.setItem(STORAGE_KEYS.STREAK_DATE, todayStr);
+          localStorage.setItem(STORAGE_KEYS.STREAK_VAL, String(streakDays));
         }
-        if (!progress.tasks[currentTaskId]) {
-          progress.tasks[currentTaskId] = { solved: false, code: "" };
-        }
-        progress.tasks[currentTaskId].solved = true;
-        progress.tasks[currentTaskId].code = editor.value;
-        saveProgress(progress);
-        updateGlobalProgressUI();
-        renderLessonsList();
-        highlightCurrentLesson();
-        highlightCurrentTask();
-        updateTestsStatus("ok", "Задача зачтена ✅");
+      } catch (e) {
+        streakDays = complexesToday > 0 ? 1 : 0;
+      }
 
-        alert("Зачёт сохранён в этом браузере. Можно двигаться дальше! 🎉");
-      });
-
-      clearOutBtn.addEventListener("click", () => {
-        outputEl.textContent =
-          "Тут будет вывод твоей программы и результаты тестов.";
-      });
-
-      // Ctrl+Enter — запуск кода
-      editor.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
-          e.preventDefault();
-          runBtn.click();
-        }
-      });
+      if (streakDays > bestStreak) {
+        bestStreak = streakDays;
+        saveBestStreak();
+      }
     }
 
-    // ==== ИНИЦИАЛИЗАЦИЯ ====
+    function saveComplexesToday() {
+      const today = getDateKey();
+      try {
+        localStorage.setItem(STORAGE_KEYS.COMPLEX_DATE, today);
+        localStorage.setItem(STORAGE_KEYS.COMPLEX_VAL, String(complexesToday));
+      } catch (e) {}
+    }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      renderLessonsList();
-      updateGlobalProgressUI();
-      setupButtons();
-      initPyodide();
+    function saveEyesToday() {
+      const today = getDateKey();
+      try {
+        localStorage.setItem(STORAGE_KEYS.EYES_DATE, today);
+        localStorage.setItem(STORAGE_KEYS.EYES_VAL, String(eyesToday));
+      } catch (e) {}
+    }
+
+    function saveTotalComplexes() {
+      try {
+        localStorage.setItem(
+          STORAGE_KEYS.TOTAL_COMPLEX_VAL,
+          String(totalComplexes)
+        );
+      } catch (e) {}
+    }
+
+    function saveBestStreak() {
+      try {
+        localStorage.setItem(
+          STORAGE_KEYS.BEST_STREAK_VAL,
+          String(bestStreak)
+        );
+      } catch (e) {}
+    }
+
+    function saveStreak() {
+      const today = getDateKey();
+      try {
+        localStorage.setItem(STORAGE_KEYS.STREAK_DATE, today);
+        localStorage.setItem(STORAGE_KEYS.STREAK_VAL, String(streakDays));
+      } catch (e) {}
+    }
+
+    // ---- АУДИО / ВИБРАЦИЯ ----
+
+    let audioCtx = null;
+
+    function ensureAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === "suspended") {
+        audioCtx.resume();
+      }
+    }
+
+    function vibrate(pattern = 25) {
+      try {
+        if (navigator.vibrate) {
+          navigator.vibrate(pattern);
+        }
+      } catch (e) {}
+    }
+
+    function playTap() {
+      try {
+        ensureAudio();
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(520, now);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(0.12, now + 0.01);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.14);
+        osc.start(now);
+        osc.stop(now + 0.16);
+        vibrate(18);
+      } catch (e) {}
+    }
+
+    // Короткий счётчик 5...1
+    function playCountdownBeep() {
+      try {
+        ensureAudio();
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(1100, now);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(0.12, now + 0.01);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+        osc.start(now);
+        osc.stop(now + 0.14);
+        vibrate(10);
+      } catch (e) {}
+    }
+
+    // Звук окончания упражнения
+    function playExerciseEndSound() {
+      try {
+        ensureAudio();
+        const now = audioCtx.currentTime;
+
+        function tone(t, freq) {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(freq, t);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          gain.gain.setValueAtTime(0.0001, t);
+          gain.gain.exponentialRampToValueAtTime(0.18, t + 0.01);
+          gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.32);
+          osc.start(t);
+          osc.stop(t + 0.35);
+        }
+
+        tone(now, 820);
+        tone(now + 0.25, 620);
+        vibrate([40, 40]);
+      } catch (e) {}
+    }
+
+    // ---- ХЕЛПЕРЫ ----
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+    }
+
+    function updateAvatarForExercise(ex) {
+      const type = ex.type;
+      const view = ex.view || "front";
+      avatarEl.className = `avatar-inner avatar--${type} avatar--view-${view}`;
+    }
+
+    function updateStatsText() {
+      statsTodayEl.textContent = `Сегодня: ${complexesToday} ${pluralRu(complexesToday, ["комплекс", "комплекса", "комплексов"])} · глаза: ${eyesToday}`;
+      streakTextEl.textContent = `${streakDays} ${pluralRu(streakDays, ["день", "дня", "дней"])}`;
+    }
+
+    function updateAchievementsView() {
+      achTotalComplexesEl.textContent = String(totalComplexes);
+      achTodayLineEl.textContent = `Сегодня: ${complexesToday} ${pluralRu(complexesToday, ["комплекс", "комплекса", "комплексов"])}`;
+      achBestStreakEl.textContent = `${bestStreak} ${pluralRu(bestStreak, ["день", "дня", "дней"])}`;
+      achEyesTodayEl.textContent = `${eyesToday} ${pluralRu(eyesToday, ["упражнение", "упражнения", "упражнений"])}`;
+
+      // Бейджи
+      if (totalComplexes >= 1) {
+        achFirstComplexEl.classList.add("achieved");
+      } else {
+        achFirstComplexEl.classList.remove("achieved");
+      }
+
+      if (complexesToday >= 3) {
+        achThreeTodayEl.classList.add("achieved");
+      } else {
+        achThreeTodayEl.classList.remove("achieved");
+      }
+
+      if (eyesToday >= 5) {
+        achEyesHeroEl.classList.add("achieved");
+      } else {
+        achEyesHeroEl.classList.remove("achieved");
+      }
+
+      if (streakDays >= 7) {
+        achStreakSevenEl.classList.add("achieved");
+      } else {
+        achStreakSevenEl.classList.remove("achieved");
+      }
+    }
+
+    function updateUI() {
+      const ex = currentExercises[currentIndex];
+      const totalCount = currentExercises.length;
+      const displayIndex = currentIndex + 1;
+
+      timerEl.textContent = formatTime(remainingSeconds);
+      exerciseCounterEl.textContent = `Упражнение ${displayIndex} из ${totalCount}`;
+      exerciseTitleEl.textContent = `${ex.area} • ${ex.name}`;
+      exerciseSubEl.textContent = ex.description;
+
+      updateAvatarForExercise(ex);
+
+      const ratio =
+        totalComplexSeconds > 0
+          ? Math.max(0, Math.min(1, elapsedComplexSeconds / totalComplexSeconds))
+          : 0;
+      progressFillEl.style.width = `${ratio * 100}%`;
+
+      statusTextEl.textContent = isRunning
+        ? "Комплекс в процессе"
+        : hasStartedComplex
+          ? "Комплекс на паузе"
+          : "Комплекс не запущен";
+
+      updateStatsText();
+      updateAchievementsView();
+    }
+
+    function setProgram(key) {
+      currentProgramKey = key;
+      currentExercises = PROGRAMS[key];
+      currentIndex = 0;
+      remainingSeconds = currentExercises[0].duration;
+      totalComplexSeconds = currentExercises.reduce((s, e) => s + e.duration, 0);
+      elapsedComplexSeconds = 0;
+      hasStartedComplex = false;
+      stopTimer();
+      startPauseBtn.innerHTML = "<span>▶</span><span>Старт</span>";
+      statusTextEl.textContent = "Комплекс не запущен";
+      updateUI();
+    }
+
+    function startTimer() {
+      if (isRunning) return;
+      ensureAudio();
+      isRunning = true;
+      startPauseBtn.innerHTML = "<span>⏸</span><span>Пауза</span>";
+      statusTextEl.textContent = "Комплекс в процессе";
+
+      timerId = setInterval(() => {
+        remainingSeconds--;
+        elapsedComplexSeconds++;
+
+        if (remainingSeconds <= 5 && remainingSeconds > 0) {
+          playCountdownBeep();
+        }
+
+        if (remainingSeconds <= 0) {
+          remainingSeconds = 0;
+          updateUI();
+          stopTimer();
+          playExerciseEndSound();
+          handleExerciseComplete(false);
+        } else {
+          updateUI();
+        }
+      }, 1000);
+    }
+
+    function stopTimer() {
+      isRunning = false;
+      if (timerId) {
+        clearInterval(timerId);
+        timerId = null;
+      }
+    }
+
+    function pauseTimer() {
+      stopTimer();
+      startPauseBtn.innerHTML = "<span>▶</span><span>Продолжить</span>";
+      statusTextEl.textContent = "Комплекс на паузе";
+      updateUI();
+    }
+
+    function resetComplex() {
+      stopTimer();
+      currentExercises = PROGRAMS[currentProgramKey];
+      currentIndex = 0;
+      remainingSeconds = currentExercises[0].duration;
+      totalComplexSeconds = currentExercises.reduce((s, e) => s + e.duration, 0);
+      elapsedComplexSeconds = 0;
+      hasStartedComplex = false;
+      startPauseBtn.innerHTML = "<span>▶</span><span>Старт</span>";
+      statusTextEl.textContent = "Комплекс не запущен";
+      updateUI();
+    }
+
+    function openDoneModal() {
+      const text =
+        complexesToday > 0
+          ? "Тело получило свою порцию движения. Можно вернуться к задачам или сделать ещё один круг позже."
+          : "Комплекс пропущен. В любой момент можно начать заново — даже один круг будет лучше, чем ничего.";
+      doneModalTextEl.textContent = text;
+      doneModal.classList.remove("hidden");
+    }
+
+    function closeDoneModal() {
+      doneModal.classList.add("hidden");
+    }
+
+    function openExerciseIntroModal(nextIndex, isFirst) {
+      const ex = currentExercises[nextIndex];
+      const totalCount = currentExercises.length;
+      const num = nextIndex + 1;
+
+      exerciseModalNextIndex = nextIndex;
+      exerciseModalMode = isFirst ? "start" : "switch";
+
+      if (isFirst) {
+        exerciseModalTitle.textContent = `Упражнение ${num}`;
+      } else {
+        exerciseModalTitle.textContent = `Упражнение ${num}`;
+      }
+
+      const areaPart = ex.area ? `${ex.area} • ${ex.name}` : ex.name;
+      exerciseModalText.textContent = `${areaPart}. ${ex.description}`;
+
+      exerciseModalBtn.textContent = isFirst
+        ? "Начать упражнение"
+        : "Перейти к следующему";
+
+      exerciseModal.classList.remove("hidden");
+    }
+
+    function closeExerciseModal() {
+      exerciseModal.classList.add("hidden");
+    }
+
+    function handleExerciseComplete(skipOnly = false) {
+      const finishedEx = currentExercises[currentIndex];
+
+      if (finishedEx.type === "eyes" && !skipOnly) {
+        eyesToday++;
+        saveEyesToday();
+      }
+
+      currentIndex++;
+
+      if (currentIndex >= currentExercises.length) {
+        // Комплекс завершён
+        if (!skipOnly) {
+          complexesToday++;
+          saveComplexesToday();
+
+          if (complexesToday === 1 && streakDays === 0) {
+            streakDays = 1;
+          }
+          saveStreak();
+
+          totalComplexes++;
+          saveTotalComplexes();
+
+          if (streakDays > bestStreak) {
+            bestStreak = streakDays;
+            saveBestStreak();
+          }
+        }
+
+        elapsedComplexSeconds = totalComplexSeconds;
+        updateUI();
+        openDoneModal();
+      } else {
+        // Переход к следующему упражнению: табличка с описанием
+        const nextIndex = currentIndex;
+        remainingSeconds = currentExercises[nextIndex].duration;
+        updateUI();
+        openExerciseIntroModal(nextIndex, false);
+      }
+    }
+
+    function updateTip() {
+      const tip = TIPS[tipIndex % TIPS.length];
+      tipTextEl.innerHTML = `<strong>Совет:</strong> ${tip}`;
+    }
+
+    // ---- ПЕРЕКЛЮЧЕНИЕ ЭКРАНОВ / ВКЛАДОК ----
+
+    function showHub() {
+      screenHub.classList.remove("hidden");
+      screenStretch.classList.add("hidden");
+      stopTimer();
+    }
+
+    function showStretch() {
+      screenHub.classList.add("hidden");
+      screenStretch.classList.remove("hidden");
+    }
+
+    function activateTab(tab) {
+      if (tab === "workout") {
+        tabWorkout.classList.add("active");
+        tabAchievements.classList.remove("active");
+        viewWorkout.classList.remove("hidden");
+        viewAchievements.classList.add("hidden");
+      } else {
+        tabWorkout.classList.remove("active");
+        tabAchievements.classList.add("active");
+        viewWorkout.classList.add("hidden");
+        viewAchievements.classList.remove("hidden");
+      }
+    }
+
+    // ---- СОБЫТИЯ ----
+
+    hubPomodoro.addEventListener("click", () => {
+      playTap();
+      try {
+        window.location.href = POMODORO_URL;
+      } catch (e) {
+        window.open(POMODORO_URL, "_blank");
+      }
     });
+
+    hubStretch.addEventListener("click", () => {
+      playTap();
+      showStretch();
+    });
+
+    backToHubBtn.addEventListener("click", () => {
+      playTap();
+      showHub();
+    });
+
+    modeButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        playTap();
+        modeButtons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        const key = btn.getAttribute("data-program") || "light";
+        setProgram(key);
+      });
+    });
+
+    startPauseBtn.addEventListener("click", () => {
+      playTap();
+      if (isRunning) {
+        pauseTimer();
+      } else {
+        // Если это самое начало комплекса — сначала табличка с описанием 1-го упражнения
+        if (!hasStartedComplex && elapsedComplexSeconds === 0) {
+          openExerciseIntroModal(currentIndex, true);
+        } else {
+          startTimer();
+        }
+      }
+    });
+
+    resetBtn.addEventListener("click", () => {
+      playTap();
+      resetComplex();
+    });
+
+    skipBtn.addEventListener("click", () => {
+      playTap();
+      stopTimer();
+      handleExerciseComplete(true);
+    });
+
+    tipNextBtn.addEventListener("click", () => {
+      playTap();
+      tipIndex = (tipIndex + 1) % TIPS.length;
+      updateTip();
+    });
+
+    doneModalBtn.addEventListener("click", () => {
+      playTap();
+      closeDoneModal();
+    });
+
+    doneModal.addEventListener("click", (e) => {
+      if (e.target === doneModal) {
+        playTap();
+        closeDoneModal();
+      }
+    });
+
+    exerciseModalBtn.addEventListener("click", () => {
+      playTap();
+      closeExerciseModal();
+
+      currentIndex = exerciseModalNextIndex;
+      remainingSeconds = currentExercises[currentIndex].duration;
+      updateUI();
+
+      if (exerciseModalMode === "start") {
+        hasStartedComplex = true;
+      }
+      startTimer();
+    });
+
+    exerciseModal.addEventListener("click", (e) => {
+      if (e.target === exerciseModal) {
+        // клик по фону — не закрываем, чтобы не потерять инструкцию
+      }
+    });
+
+    tabWorkout.addEventListener("click", () => {
+      playTap();
+      activateTab("workout");
+    });
+
+    tabAchievements.addEventListener("click", () => {
+      playTap();
+      activateTab("achievements");
+    });
+
+    // ---- ИНИЦИАЛИЗАЦИЯ ----
+
+    loadTodayCounters();
+    updateTip();
+    updateUI();
+    activateTab("workout");
+    showHub();
   </script>
 </body>
 </html>
